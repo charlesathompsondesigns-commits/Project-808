@@ -168,6 +168,7 @@ nav {
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 100px clamp(24px, 6vw, 64px) 64px;
 }
 
@@ -211,6 +212,8 @@ nav {
   position: relative;
   z-index: 2;
   min-height: calc(100vh - 164px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .menu-meta {
@@ -2035,7 +2038,7 @@ section {
   width: 42px;
   height: 42px;
   background: var(--white);
-  border: 1px solid var(--border);
+  border: 2px solid var(--red);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2043,7 +2046,7 @@ section {
   z-index: 210;
   font-family: 'DM Mono', monospace;
   font-size: 16px;
-  color: var(--ink);
+  color: var(--red);
   padding: 0;
   transition: all 0.2s;
 }
@@ -2222,6 +2225,15 @@ section {
   border-radius: 0;
 }
 
+/* Prevent yellow autofill background */
+.survey-modal input:-webkit-autofill,
+.survey-modal input:-webkit-autofill:hover,
+.survey-modal input:-webkit-autofill:focus,
+.survey-modal input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--ink) !important;
+}
+
 .survey-modal input:focus, .survey-modal textarea:focus { border-bottom-color: var(--blue); }
 
 .survey-modal textarea { resize: none; min-height: 80px; line-height: 1.6; }
@@ -2283,6 +2295,15 @@ section {
   font-size: 12px;
   color: var(--ink);
   outline: none;
+}
+
+/* Prevent yellow autofill background */
+.survey-modal .other-input-wrap input:-webkit-autofill,
+.survey-modal .other-input-wrap input:-webkit-autofill:hover,
+.survey-modal .other-input-wrap input:-webkit-autofill:focus,
+.survey-modal .other-input-wrap input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--blue-light) inset !important;
+  -webkit-text-fill-color: var(--ink) !important;
 }
 
 .survey-modal .other-input-wrap label {
@@ -2405,6 +2426,93 @@ section {
 }
 
 .survey-modal .s-success-msg p { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; line-height: 1.8; }
+
+.s-completion-form {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.s-completion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.s-completion-label {
+  font-family: 'Instrument Serif', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: -0.005em;
+}
+
+.s-completion-input {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  padding: 12px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.s-completion-input::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+
+.s-completion-input:focus {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.4);
+}
+
+.s-completion-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.4);
+  margin: 0;
+}
+
+.s-completion-btn {
+  background: var(--white);
+  color: var(--blue);
+  border: none;
+  padding: 14px 32px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.s-completion-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+.s-completion-btn:hover::after { transform: scaleX(1); }
+.s-completion-btn span { position: relative; z-index: 1; }
+.s-completion-btn:hover span { color: var(--white); }
 
 /* ───── IMPACT ───── */
 .impact {
@@ -2865,8 +2973,8 @@ footer {
   .nav-links a:not(.nav-cta) { display: none; }
   .nav-cta { padding: 9px 14px; font-size: 9px !important; }
   .menu-toggle { width: 38px; height: 38px; }
-  .menu-inner { grid-template-columns: 1fr; gap: 40px; }
-  .menu-overlay { padding: 90px 24px 48px; }
+  .menu-inner { grid-template-columns: 1fr; gap: 40px; width: 100%; }
+  .menu-overlay { padding: 90px 24px 48px; width: 100vw; left: 0; right: 0; }
   .menu-list a { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 18px 0; }
   .menu-list a:hover { padding-left: 8px; }
   section { padding: 64px 20px; }
@@ -2926,6 +3034,12 @@ footer {
     </div>
 
     <ul class="menu-list">
+      <li><a href="#" class="menu-survey" id="menuSurveyLink">
+        <span class="menu-num">✦</span>
+        <span class="menu-label">Take the Survey</span>
+        <span class="menu-sub">Add your voice to the case for Project 808 — 2 minutes.</span>
+        <span class="menu-arrow">→</span>
+      </a></li>
       <li><a href="#problem" data-menu-link>
         <span class="menu-num">01</span>
         <span class="menu-label">The Problem</span>
@@ -2978,12 +3092,6 @@ footer {
         <span class="menu-num">09</span>
         <span class="menu-label">Get Involved</span>
         <span class="menu-sub">Stay close, partner with us, or fund the work.</span>
-        <span class="menu-arrow">→</span>
-      </a></li>
-      <li><a href="#" class="menu-survey" id="menuSurveyLink">
-        <span class="menu-num">✦</span>
-        <span class="menu-label">Take the Survey</span>
-        <span class="menu-sub">Add your voice to the case for Project 808 — 2 minutes.</span>
         <span class="menu-arrow">→</span>
       </a></li>
     </ul>
@@ -3873,7 +3981,7 @@ footer {
       <a href="#partner">Partner with us</a>
       <a href="#partner">Fund the work</a>
       <a href="#" class="footer-survey-link">Take the survey</a>
-      <a href="mailto:hello@project808.studio">hello@project808.studio</a>
+      <a href="mailto:chicagoproject808@gmail.com">chicagoproject808@gmail.com</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -4029,7 +4137,7 @@ async function handleEmail(e) {
     input.value = '';
   } catch (err) {
     console.error(err);
-    showFormError(form, 'Something went wrong. Please try again or email hello@project808.studio directly.');
+    showFormError(form, 'Something went wrong. Please try again or email chicagoproject808@gmail.com directly.');
   } finally {
     button.disabled = false;
     button.querySelector('span').textContent = originalLabel;
@@ -4061,7 +4169,7 @@ async function handlePartner(e) {
     inputs.forEach(el => el.value = '');
   } catch (err) {
     console.error(err);
-    showFormError(form, 'Something went wrong. Please try again or email hello@project808.studio directly.');
+    showFormError(form, 'Something went wrong. Please try again or email chicagoproject808@gmail.com directly.');
   } finally {
     button.disabled = false;
     button.querySelector('span').textContent = originalLabel;
@@ -4523,21 +4631,115 @@ surveyForm.querySelectorAll('[data-other]').forEach(input => {
 surveyForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  // Validate visible "other" fields
+  // Validate all questions except Q15 (last textarea)
   let valid = true;
+  const errors = [];
+
+  // Q01: Name (required)
+  const name = surveyForm.querySelectorAll('input[type="text"]')[0];
+  if (!name.value.trim()) {
+    errors.push('Please enter your name.');
+    valid = false;
+  }
+
+  // Q02: Email (required)
+  const email = surveyForm.querySelectorAll('input[type="email"]')[0];
+  if (!email.value.trim()) {
+    errors.push('Please enter your email address.');
+    valid = false;
+  }
+
+  // Q03: Status (required)
+  if (!surveyForm.querySelector('input[name="status"]:checked')) {
+    errors.push('Please select your current status.');
+    valid = false;
+  }
+
+  // Q04: Field (required - at least one checkbox)
+  if (!surveyForm.querySelector('input[name="field"]:checked')) {
+    errors.push('Please select at least one field.');
+    valid = false;
+  }
+
+  // Q05: Lost access (required)
+  if (!surveyForm.querySelector('input[name="lostaccess"]:checked')) {
+    errors.push('Please answer about lost equipment access.');
+    valid = false;
+  }
+
+  // Q06: Equipment (required - at least one checkbox)
+  if (!surveyForm.querySelector('input[name="equipment"]:checked')) {
+    errors.push('Please select at least one equipment type.');
+    valid = false;
+  }
+
+  // Q07: Tariffs (required)
+  if (!surveyForm.querySelector('input[name="tariffs"]:checked')) {
+    errors.push('Please answer about tariffs impact.');
+    valid = false;
+  }
+
+  // Q08: Story (required)
+  const story = surveyForm.querySelectorAll('textarea')[0];
+  if (!story.value.trim()) {
+    errors.push('Please describe what you were trying to build.');
+    valid = false;
+  }
+
+  // Q09: Frequency (required)
+  if (!surveyForm.querySelector('input[name="frequency"]:checked')) {
+    errors.push('Please select how often you would use the studio.');
+    valid = false;
+  }
+
+  // Q10: Budget (required)
+  if (!surveyForm.querySelector('input[name="budget"]:checked')) {
+    errors.push('Please select your budget range.');
+    valid = false;
+  }
+
+  // Q11: Same day fee (required)
+  if (!surveyForm.querySelector('input[name="sameday"]:checked')) {
+    errors.push('Please answer about same-day prototyping fees.');
+    valid = false;
+  }
+
+  // Q12: Urgency scale (required)
+  if (!surveyForm.querySelector('.scale-btn.active')) {
+    errors.push('Please rate the urgency of this need.');
+    valid = false;
+  }
+
+  // Q13: City responsibility (required)
+  if (!surveyForm.querySelector('input[name="cityresponsibility"]:checked')) {
+    errors.push('Please answer about Chicago\'s responsibility.');
+    valid = false;
+  }
+
+  // Q14: Location (required)
+  if (!surveyForm.querySelector('input[name="location"]:checked')) {
+    errors.push('Please select where the studio should be located.');
+    valid = false;
+  }
+
+  // Validate "other" fields if visible
   surveyForm.querySelectorAll('.other-input-wrap.visible').forEach(wrap => {
     const input = wrap.querySelector('input');
     const err = wrap.querySelector('.other-error');
     if (!input.value.trim()) {
       err.style.display = 'block';
-      input.focus();
       valid = false;
     } else {
       err.style.display = 'none';
     }
   });
 
-  if (!valid) return;
+  if (!valid) {
+    if (errors.length > 0) {
+      alert('Please complete all required questions:\n\n' + errors.join('\n'));
+    }
+    return;
+  }
 
   const submitBtn = surveyForm.querySelector('.s-btn-submit');
   const originalLabel = submitBtn.querySelector('span').textContent;
@@ -4545,47 +4747,97 @@ surveyForm.addEventListener('submit', async (e) => {
   submitBtn.querySelector('span').textContent = 'Sending...';
 
   try {
-    // Collect all survey data
-    const responses = {};
-    
-    // Radio buttons and text inputs
-    surveyForm.querySelectorAll('input[type="radio"]').forEach(input => {
-      if (input.checked) {
-        const labelText = input.closest('.option')?.querySelector('span')?.textContent?.trim();
-        responses[input.name] = labelText || input.value;
-      }
-    });
-
-    // Checkboxes (group by name)
-    surveyForm.querySelectorAll('input[type="checkbox"]').forEach(input => {
-      if (input.checked) {
-        const labelText = input.closest('.option')?.querySelector('span')?.textContent?.trim() || input.value;
-        if (!responses[input.name]) responses[input.name] = [];
-        if (Array.isArray(responses[input.name])) {
-          responses[input.name].push(labelText);
-        }
-      }
-    });
-
-    // Text and email inputs
-    surveyForm.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
-      if (input.name && input.value.trim()) {
-        responses[input.name] = input.value.trim();
-      }
-    });
-
-    // Textareas
-    surveyForm.querySelectorAll('textarea').forEach((textarea, idx) => {
-      if (textarea.value.trim()) {
-        responses[`comment_${idx}`] = textarea.value.trim();
-      }
-    });
-
-    // Urgency scale
-    const activeScale = surveyForm.querySelector('.scale-btn.active');
-    if (activeScale) {
-      responses.urgency_scale = parseInt(activeScale.textContent, 10);
-    }
+    // Collect all survey data with question labels
+    const responses = {
+      // Q01: Name
+      name: surveyForm.querySelectorAll('input[type="text"]')[0]?.value?.trim() || null,
+      
+      // Q02: Email
+      email: surveyForm.querySelectorAll('input[type="email"]')[0]?.value?.trim() || null,
+      
+      // Q03: Status
+      status: (() => {
+        const checked = surveyForm.querySelector('input[name="status"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q04: Field (checkboxes)
+      field: (() => {
+        const selected = [];
+        surveyForm.querySelectorAll('input[name="field"]:checked').forEach(input => {
+          const label = input.closest('.option')?.querySelector('span')?.textContent?.trim();
+          if (label) selected.push(label);
+        });
+        return selected.length > 0 ? selected : null;
+      })(),
+      
+      // Q05: Lost access
+      lost_access: (() => {
+        const checked = surveyForm.querySelector('input[name="lostaccess"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q06: Equipment (checkboxes)
+      equipment: (() => {
+        const selected = [];
+        surveyForm.querySelectorAll('input[name="equipment"]:checked').forEach(input => {
+          const label = input.closest('.option')?.querySelector('span')?.textContent?.trim();
+          if (label) selected.push(label);
+        });
+        return selected.length > 0 ? selected : null;
+      })(),
+      
+      // Q07: Tariffs
+      tariffs: (() => {
+        const checked = surveyForm.querySelector('input[name="tariffs"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q08: Story / what stopped you
+      story: surveyForm.querySelectorAll('textarea')[0]?.value?.trim() || null,
+      
+      // Q09: Usage frequency
+      frequency: (() => {
+        const checked = surveyForm.querySelector('input[name="frequency"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q10: Monthly budget
+      budget: (() => {
+        const checked = surveyForm.querySelector('input[name="budget"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q11: Same day prototype fee
+      same_day_fee: (() => {
+        const checked = surveyForm.querySelector('input[name="sameday"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q12: Urgency scale (1-10)
+      urgency_scale: (() => {
+        const active = surveyForm.querySelector('.scale-btn.active');
+        return active ? parseInt(active.textContent, 10) : null;
+      })(),
+      
+      // Q13: City responsibility
+      city_responsibility: (() => {
+        const checked = surveyForm.querySelector('input[name="cityresponsibility"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q14: Location
+      location: (() => {
+        const checked = surveyForm.querySelector('input[name="location"]:checked');
+        return checked ? checked.closest('.option')?.querySelector('span')?.textContent?.trim() : null;
+      })(),
+      
+      // Q15: Message to decision makers
+      message_to_decision_makers: surveyForm.querySelectorAll('textarea')[1]?.value?.trim() || null,
+      
+      // Metadata
+      submitted_at: new Date().toISOString()
+    };
 
     // Submit to Supabase
     const response = await fetch(`${SUPABASE_URL}/rest/v1/survey_responses`, {
@@ -4604,13 +4856,108 @@ surveyForm.addEventListener('submit', async (e) => {
       throw new Error(`Supabase error: ${response.status} ${errText}`);
     }
 
+    // Send confirmation email with survey answers
+    const userEmail = responses.email;
+    const emailBody = `Thank you for being part of Project 808's proof of concept.
+
+Your responses:
+
+Q1. Name: ${responses.name}
+Q2. Email: ${responses.email}
+Q3. Status: ${responses.status}
+Q4. Fields: ${Array.isArray(responses.field) ? responses.field.join(', ') : 'Not answered'}
+Q5. Lost Access: ${responses.lost_access}
+Q6. Equipment Needed: ${Array.isArray(responses.equipment) ? responses.equipment.join(', ') : 'Not answered'}
+Q7. Tariffs Impact: ${responses.tariffs}
+Q8. Your Story: ${responses.story}
+Q9. Usage Frequency: ${responses.frequency}
+Q10. Monthly Budget: ${responses.budget}
+Q11. Same-Day Prototype Fee: ${responses.same_day_fee}
+Q12. Urgency (1-10): ${responses.urgency_scale}
+Q13. City Responsibility: ${responses.city_responsibility}
+Q14. Location Preference: ${responses.location}
+Q15. Message to Decision-Makers: ${responses.message_to_decision_makers || 'Not provided'}
+
+We'll keep you updated on Project 808's progress. If you have questions, reply to this email or contact chicagoproject808@gmail.com.
+
+✦ Project 808
+Chicago Creative Infrastructure Initiative`;
+
+    try {
+      // Send email to user
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer re_CjvU8YRVs6w3NKMZXwSMvQBwYGNQFWLJW',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'chicagoproject808@gmail.com',
+          to: userEmail,
+          subject: '✦ Your Project 808 Survey Response',
+          text: emailBody
+        })
+      });
+
+      // Send copy to project email
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer re_CjvU8YRVs6w3NKMZXwSMvQBwYGNQFWLJW',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'chicagoproject808@gmail.com',
+          to: 'chicagoproject808@gmail.com',
+          subject: `✦ New Survey Response from ${responses.name}`,
+          text: `New survey submission from ${responses.name} (${userEmail})\n\n${emailBody}`
+        })
+      });
+    } catch (emailErr) {
+      console.error('Email send failed:', emailErr);
+      // Continue to show success even if email fails
+    }
+
     // Show success message
     surveySuccess.style.display = 'block';
     surveyForm.style.display = 'none';
     surveyForm.scrollTop = 0;
+    
+    // Handle SMS opt-in button
+    document.getElementById('completionSubmitBtn').addEventListener('click', async () => {
+      const phone = document.getElementById('surveyPhone').value.trim();
+      if (!phone) {
+        closeSurveyModal();
+        return;
+      }
+      
+      // Save phone to Supabase in a new table or as metadata
+      try {
+        const smsData = {
+          email: userEmail,
+          phone: phone,
+          opted_in_at: new Date().toISOString()
+        };
+        
+        await fetch(`${SUPABASE_URL}/rest/v1/sms_signups`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(smsData)
+        });
+      } catch (smsErr) {
+        console.error('SMS signup failed:', smsErr);
+      }
+      
+      closeSurveyModal();
+    });
   } catch (err) {
     console.error(err);
-    alert('Something went wrong. Please try again or email hello@project808.studio directly.');
+    alert('Something went wrong. Please try again or email chicagoproject808@gmail.com directly.');
     submitBtn.disabled = false;
     submitBtn.querySelector('span').textContent = originalLabel;
   }
@@ -4684,15 +5031,15 @@ surveyForm.addEventListener('submit', async (e) => {
         <div class="q-label">What field are you working in or studying?</div>
         <div class="q-sub">Select all that apply.</div>
         <div class="options grid">
-          <label class="option"><input type="checkbox"><span>Product / Industrial Design</span></label>
-          <label class="option"><input type="checkbox"><span>UX / UI Design</span></label>
-          <label class="option"><input type="checkbox"><span>Fashion / Textiles</span></label>
-          <label class="option"><input type="checkbox"><span>Architecture / Spatial Design</span></label>
-          <label class="option"><input type="checkbox"><span>Graphic / Visual Design</span></label>
-          <label class="option"><input type="checkbox"><span>Fine Arts / Sculpture</span></label>
-          <label class="option"><input type="checkbox"><span>Engineering / Fabrication</span></label>
-          <label class="option"><input type="checkbox"><span>Entrepreneurship / Brand Building</span></label>
-          <label class="option"><input type="checkbox" data-other="other-field"><span>Other</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Product / Industrial Design</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>UX / UI Design</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Fashion / Textiles</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Architecture / Spatial Design</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Graphic / Visual Design</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Fine Arts / Sculpture</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Engineering / Fabrication</span></label>
+          <label class="option"><input type="checkbox" name="field"><span>Entrepreneurship / Brand Building</span></label>
+          <label class="option"><input type="checkbox" name="field" data-other="other-field"><span>Other</span></label>
         </div>
         <div class="other-input-wrap" id="other-field">
           <label>Please describe</label>
@@ -4717,16 +5064,16 @@ surveyForm.addEventListener('submit', async (e) => {
         <div class="q-label">What equipment have you lost access to or can't find in Chicago?</div>
         <div class="q-sub">Select all that apply.</div>
         <div class="options grid">
-          <label class="option"><input type="checkbox"><span>Laser Cutter (large format)</span></label>
-          <label class="option"><input type="checkbox"><span>CNC Machine</span></label>
-          <label class="option"><input type="checkbox"><span>Large Format Printer</span></label>
-          <label class="option"><input type="checkbox"><span>Water Jet Cutter</span></label>
-          <label class="option"><input type="checkbox"><span>3D Printer (industrial grade)</span></label>
-          <label class="option"><input type="checkbox"><span>Vinyl / Sublimation Printing</span></label>
-          <label class="option"><input type="checkbox"><span>Textile / Sewing Equipment</span></label>
-          <label class="option"><input type="checkbox"><span>Metalworking / Welding</span></label>
-          <label class="option"><input type="checkbox"><span>Woodworking / Carpentry</span></label>
-          <label class="option"><input type="checkbox" data-other="other-equipment"><span>Other</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Laser Cutter (large format)</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>CNC Machine</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Large Format Printer</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Water Jet Cutter</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>3D Printer (industrial grade)</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Vinyl / Sublimation Printing</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Textile / Sewing Equipment</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Metalworking / Welding</span></label>
+          <label class="option"><input type="checkbox" name="equipment"><span>Woodworking / Carpentry</span></label>
+          <label class="option"><input type="checkbox" name="equipment" data-other="other-equipment"><span>Other</span></label>
         </div>
         <div class="other-input-wrap" id="other-equipment">
           <label>Please describe</label>
@@ -4844,7 +5191,18 @@ surveyForm.addEventListener('submit', async (e) => {
       <div class="s-success-msg" id="surveySuccess">
         <div class="s-success-stars">✦ ✦ ✦ ✦</div>
         <h2>You're part of the proof.</h2>
-        <p>Your response has been recorded.<br>We'll keep you updated as 808 moves forward.</p>
+        <p>Your response has been recorded and sent to your email.<br>We'll keep you updated as 808 moves forward.</p>
+        
+        <div class="s-completion-form">
+          <div class="s-completion-section">
+            <label class="s-completion-label">Get text updates about Project 808</label>
+            <input type="tel" id="surveyPhone" placeholder="(312) 555-0123" class="s-completion-input">
+            <p class="s-completion-sub">Optional. Standard messaging rates apply.</p>
+          </div>
+          <button type="button" id="completionSubmitBtn" class="s-completion-btn">
+            <span>I'm in</span>
+          </button>
+        </div>
       </div>
 
     </form>
