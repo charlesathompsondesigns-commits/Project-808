@@ -2900,7 +2900,7 @@ footer {
     <a href="#comparison">Cities</a>
     <a href="#impact">Impact</a>
     <a href="#founder">Founder</a>
-    <a href="./survey/index.html" target="_blank" rel="noopener">Survey</a>
+    <a href="#" class="nav-survey-link">Survey</a>
     <a href="#partner" class="nav-cta"><span>Partner with us</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
       <span class="bar"></span>
@@ -2980,7 +2980,7 @@ footer {
         <span class="menu-sub">Stay close, partner with us, or fund the work.</span>
         <span class="menu-arrow">→</span>
       </a></li>
-      <li><a href="./survey/index.html" target="_blank" rel="noopener" class="menu-survey">
+      <li><a href="#" class="menu-survey" id="menuSurveyLink">
         <span class="menu-num">✦</span>
         <span class="menu-label">Take the Survey</span>
         <span class="menu-sub">Add your voice to the case for Project 808 — 2 minutes.</span>
@@ -3666,7 +3666,7 @@ footer {
       <h2 class="survey-banner-headline">Are you a Chicago creative? <em>Your voice strengthens the case.</em></h2>
       <p class="survey-banner-text">We're collecting community input to demonstrate demand for Project 808 to city officials, investors, and decision-makers. Whether you're a current student, recent grad, freelancer, or founder — your response helps prove this infrastructure is needed. Confidential, brief, and built for builders.</p>
     </div>
-    <a href="./survey/index.html" target="_blank" rel="noopener" class="survey-banner-cta"><span>Share your perspective →</span></a>
+    <a href="#" class="survey-banner-cta" id="surveyBannerCTA"><span>Share your perspective →</span></a>
   </div>
 </section>
 
@@ -3872,7 +3872,7 @@ footer {
       <a href="#partner">Stay updated</a>
       <a href="#partner">Partner with us</a>
       <a href="#partner">Fund the work</a>
-      <a href="./survey/index.html" target="_blank" rel="noopener">Take the survey</a>
+      <a href="#" class="footer-survey-link">Take the survey</a>
       <a href="mailto:hello@project808.studio">hello@project808.studio</a>
     </div>
   </div>
@@ -4454,7 +4454,402 @@ document.addEventListener('keydown', (e) => {
     closeEqModal();
   }
 });
+// ───── SURVEY MODAL ─────
+document.addEventListener('DOMContentLoaded', function() {
+const surveyModal = document.getElementById('surveyModal');
+const surveyForm = document.getElementById('surveyForm');
+const surveySuccess = document.getElementById('surveySuccess');
+const surveyUrgencyScale = document.getElementById('surveyUrgencyScale');
+
+// Create 1-10 urgency scale buttons
+for (let i = 1; i <= 10; i++) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'scale-btn';
+  btn.textContent = i;
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.survey-modal .scale-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+  surveyUrgencyScale.appendChild(btn);
+}
+
+// Open survey modal on all CTA clicks
+function openSurveyModal(e) {
+  if (e) e.preventDefault();
+  surveyModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  surveyForm.scrollTop = 0;
+}
+
+document.getElementById('surveyBannerCTA').addEventListener('click', openSurveyModal);
+document.querySelector('.nav-survey-link').addEventListener('click', openSurveyModal);
+document.getElementById('menuSurveyLink').addEventListener('click', openSurveyModal);
+document.querySelector('.footer-survey-link').addEventListener('click', openSurveyModal);
+
+// Close survey modal
+function closeSurveyModal() {
+  surveyModal.classList.remove('open');
+  document.body.style.overflow = 'auto';
+  surveySuccess.style.display = 'none';
+  surveyForm.reset();
+  document.querySelectorAll('.survey-modal .scale-btn').forEach(b => b.classList.remove('active'));
+}
+
+document.getElementById('surveyModalClose').addEventListener('click', closeSurveyModal);
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && surveyModal.classList.contains('open')) {
+    closeSurveyModal();
+  }
+});
+
+// Handle "other" checkbox/radio logic in survey
+surveyForm.querySelectorAll('[data-other]').forEach(input => {
+  input.addEventListener('change', () => {
+    const otherId = input.getAttribute('data-other');
+    const otherWrap = document.getElementById(otherId);
+    if (input.checked) {
+      otherWrap.classList.add('visible');
+    } else if (!surveyForm.querySelector(`[data-other="${otherId}"]:checked`)) {
+      otherWrap.classList.remove('visible');
+    }
+  });
+});
+
+// Survey form submit with Supabase
+surveyForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Validate visible "other" fields
+  let valid = true;
+  surveyForm.querySelectorAll('.other-input-wrap.visible').forEach(wrap => {
+    const input = wrap.querySelector('input');
+    const err = wrap.querySelector('.other-error');
+    if (!input.value.trim()) {
+      err.style.display = 'block';
+      input.focus();
+      valid = false;
+    } else {
+      err.style.display = 'none';
+    }
+  });
+
+  if (!valid) return;
+
+  const submitBtn = surveyForm.querySelector('.s-btn-submit');
+  const originalLabel = submitBtn.querySelector('span').textContent;
+  submitBtn.disabled = true;
+  submitBtn.querySelector('span').textContent = 'Sending...';
+
+  try {
+    // Collect all survey data
+    const responses = {};
+    
+    // Radio buttons and text inputs
+    surveyForm.querySelectorAll('input[type="radio"]').forEach(input => {
+      if (input.checked) {
+        const labelText = input.closest('.option')?.querySelector('span')?.textContent?.trim();
+        responses[input.name] = labelText || input.value;
+      }
+    });
+
+    // Checkboxes (group by name)
+    surveyForm.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      if (input.checked) {
+        const labelText = input.closest('.option')?.querySelector('span')?.textContent?.trim() || input.value;
+        if (!responses[input.name]) responses[input.name] = [];
+        if (Array.isArray(responses[input.name])) {
+          responses[input.name].push(labelText);
+        }
+      }
+    });
+
+    // Text and email inputs
+    surveyForm.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
+      if (input.name && input.value.trim()) {
+        responses[input.name] = input.value.trim();
+      }
+    });
+
+    // Textareas
+    surveyForm.querySelectorAll('textarea').forEach((textarea, idx) => {
+      if (textarea.value.trim()) {
+        responses[`comment_${idx}`] = textarea.value.trim();
+      }
+    });
+
+    // Urgency scale
+    const activeScale = surveyForm.querySelector('.scale-btn.active');
+    if (activeScale) {
+      responses.urgency_scale = parseInt(activeScale.textContent, 10);
+    }
+
+    // Submit to Supabase
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/survey_responses`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ responses })
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(`Supabase error: ${response.status} ${errText}`);
+    }
+
+    // Show success message
+    surveySuccess.style.display = 'block';
+    surveyForm.style.display = 'none';
+    surveyForm.scrollTop = 0;
+  } catch (err) {
+    console.error(err);
+    alert('Something went wrong. Please try again or email hello@project808.studio directly.');
+    submitBtn.disabled = false;
+    submitBtn.querySelector('span').textContent = originalLabel;
+  }
+});
+
+}); // End DOMContentLoaded
+
 </script>
+
+<!-- SURVEY MODAL (hidden, opens on CTA click) -->
+<div class="survey-modal" id="surveyModal">
+  <button class="survey-modal-close" id="surveyModalClose">✕</button>
+  
+  <div class="s-hero">
+    <div class="s-stars-row">
+      <span class="s-star">✦</span>
+      <span class="s-star">✦</span>
+      <span class="s-star">✦</span>
+      <span class="s-star">✦</span>
+    </div>
+    <p class="s-tag">Chicago Creative Infrastructure — 2026</p>
+    <h1>We need to know<br>you <em>exist.</em></h1>
+    <p>Two minutes of your time becomes the data a city needs to invest in its own people. Fill this out honestly — your experience is the proof of concept.</p>
+    <div class="s-hero-rule">
+      <span></span>
+      <p>808 · Chicago</p>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="s-stripe"></div>
+
+  <div class="s-form-wrap">
+    <form id="surveyForm" novalidate>
+
+      <div class="s-section-label"><span class="s">✦</span> 01 — Who You Are</div>
+
+      <div class="q-block">
+        <div class="q-number">Q01</div>
+        <div class="q-label">What is your name?</div>
+        <input type="text" placeholder="First and last name" required>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q02</div>
+        <div class="q-label">What is your email address?</div>
+        <div class="q-sub">We'll only use this to keep you updated on 808's progress.</div>
+        <input type="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q03</div>
+        <div class="q-label">Which best describes where you are right now?</div>
+        <div class="options grid">
+          <label class="option"><input type="radio" name="status"><span>Current college student in Chicago</span></label>
+          <label class="option"><input type="radio" name="status"><span>Recent grad (0–2 years out)</span></label>
+          <label class="option"><input type="radio" name="status"><span>Independent creative / freelancer</span></label>
+          <label class="option"><input type="radio" name="status"><span>Founder / building a brand</span></label>
+          <label class="option"><input type="radio" name="status"><span>Educator / faculty</span></label>
+          <label class="option"><input type="radio" name="status" data-other="other-status"><span>Other Chicago creative</span></label>
+        </div>
+        <div class="other-input-wrap" id="other-status">
+          <label>Please describe</label>
+          <input type="text" placeholder="Tell us where you're at..." data-other-field="status">
+          <div class="other-error" id="other-status-error">Please fill in what "Other" means to you.</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q04</div>
+        <div class="q-label">What field are you working in or studying?</div>
+        <div class="q-sub">Select all that apply.</div>
+        <div class="options grid">
+          <label class="option"><input type="checkbox"><span>Product / Industrial Design</span></label>
+          <label class="option"><input type="checkbox"><span>UX / UI Design</span></label>
+          <label class="option"><input type="checkbox"><span>Fashion / Textiles</span></label>
+          <label class="option"><input type="checkbox"><span>Architecture / Spatial Design</span></label>
+          <label class="option"><input type="checkbox"><span>Graphic / Visual Design</span></label>
+          <label class="option"><input type="checkbox"><span>Fine Arts / Sculpture</span></label>
+          <label class="option"><input type="checkbox"><span>Engineering / Fabrication</span></label>
+          <label class="option"><input type="checkbox"><span>Entrepreneurship / Brand Building</span></label>
+          <label class="option"><input type="checkbox" data-other="other-field"><span>Other</span></label>
+        </div>
+        <div class="other-input-wrap" id="other-field">
+          <label>Please describe</label>
+          <input type="text" placeholder="What field are you in?" data-other-field="field">
+          <div class="other-error" id="other-field-error">Please fill in what "Other" means to you.</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q05</div>
+        <div class="q-label">Have you lost access to fabrication or production equipment after leaving a school or institution?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="lostaccess"><span>Yes — and it significantly impacted my ability to create or build</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>Yes — but I found workarounds</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>Not yet — but I'm anticipating this</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>No — I still have access</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q06</div>
+        <div class="q-label">What equipment have you lost access to or can't find in Chicago?</div>
+        <div class="q-sub">Select all that apply.</div>
+        <div class="options grid">
+          <label class="option"><input type="checkbox"><span>Laser Cutter (large format)</span></label>
+          <label class="option"><input type="checkbox"><span>CNC Machine</span></label>
+          <label class="option"><input type="checkbox"><span>Large Format Printer</span></label>
+          <label class="option"><input type="checkbox"><span>Water Jet Cutter</span></label>
+          <label class="option"><input type="checkbox"><span>3D Printer (industrial grade)</span></label>
+          <label class="option"><input type="checkbox"><span>Vinyl / Sublimation Printing</span></label>
+          <label class="option"><input type="checkbox"><span>Textile / Sewing Equipment</span></label>
+          <label class="option"><input type="checkbox"><span>Metalworking / Welding</span></label>
+          <label class="option"><input type="checkbox"><span>Woodworking / Carpentry</span></label>
+          <label class="option"><input type="checkbox" data-other="other-equipment"><span>Other</span></label>
+        </div>
+        <div class="other-input-wrap" id="other-equipment">
+          <label>Please describe</label>
+          <input type="text" placeholder="What equipment do you need?" data-other-field="equipment">
+          <div class="other-error" id="other-equipment-error">Please fill in what "Other" means to you.</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q07</div>
+        <div class="q-label">Have tariffs or overseas manufacturing costs blocked you from producing or testing a product idea?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="tariffs"><span>Yes — I had to abandon or delay the idea entirely</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>Yes — I found a more expensive local option</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>Not yet — but I'm concerned about this</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>No — this hasn't affected me</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q08</div>
+        <div class="q-label">Briefly describe what you were trying to build — and what stopped you.</div>
+        <div class="q-sub">This is the most important question on this form. Be specific. Your story is the proof.</div>
+        <textarea placeholder="e.g. I wanted to prototype a run of custom pieces but the minimum overseas order was $2,000 and nothing in Chicago could produce at that scale..."></textarea>
+      </div>
+
+      <hr class="s-section-divider">
+
+      <div class="s-section-label"><span class="s">✦</span> 02 — Demand & Willingness to Invest</div>
+
+      <div class="q-block">
+        <div class="q-number">Q09</div>
+        <div class="q-label">If a professional creative manufacturing studio existed in Chicago today, how often would you use it?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="frequency"><span>Multiple times a week</span></label>
+          <label class="option"><input type="radio" name="frequency"><span>Once a week</span></label>
+          <label class="option"><input type="radio" name="frequency"><span>A few times a month</span></label>
+          <label class="option"><input type="radio" name="frequency"><span>Occasionally / project-based</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q10</div>
+        <div class="q-label">What would you reasonably pay per month for access to this space and its equipment?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="budget"><span>$25–$50 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$50–$100 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$100–$200 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$200–$350 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$350+ / month for unlimited access</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q11</div>
+        <div class="q-label">Would you pay a one-time fee to bring an idea and leave with a working prototype the same day?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="sameday"><span>Yes — absolutely</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>Yes — depending on the price</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>Maybe — I'd need more details</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>No — I just need machine access</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q12</div>
+        <div class="q-label">On a scale of 1–10, how urgent is this need for you personally right now?</div>
+        <div class="scale-wrap" id="surveyUrgencyScale"></div>
+        <div class="scale-labels">
+          <span class="scale-label-text">Not urgent</span>
+          <span class="scale-label-text">Critical</span>
+        </div>
+      </div>
+
+      <hr class="s-section-divider">
+
+      <div class="s-section-label"><span class="s">✦</span> 03 — Chicago's Responsibility</div>
+
+      <div class="q-block">
+        <div class="q-number">Q13</div>
+        <div class="q-label">Do you believe the City of Chicago has a responsibility to fund creative manufacturing infrastructure for its residents?</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes — this is a workforce and economic development issue</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes — but it should be community-led, not city-controlled</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Partially — public-private partnership makes more sense</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>No — this should be privately funded</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q14</div>
+        <div class="q-label">Where in Chicago would this space be most impactful?</div>
+        <div class="options grid">
+          <label class="option"><input type="radio" name="location"><span>South Side</span></label>
+          <label class="option"><input type="radio" name="location"><span>West Side</span></label>
+          <label class="option"><input type="radio" name="location"><span>Near North / Loop adjacent</span></label>
+          <label class="option"><input type="radio" name="location"><span>Wherever it's most accessible by transit</span></label>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-number">Q15</div>
+        <div class="q-label">Is there anything else you want decision-makers to know about why this space needs to exist?</div>
+        <div class="q-sub">Your words may be quoted directly in our pitch to the city. Be honest. Be bold.</div>
+        <textarea placeholder="Write freely — this is your chance to speak directly to the people holding the budget."></textarea>
+      </div>
+
+      <hr class="s-section-divider">
+
+      <div class="s-submit-wrap">
+        <p class="s-submit-note">Your response is confidential and will only be used to demonstrate community demand<br>for 808 to city officials, investors, and decision-makers.</p>
+        <button type="submit" class="s-btn-submit"><span>Submit My Response</span></button>
+      </div>
+
+      <div class="s-success-msg" id="surveySuccess">
+        <div class="s-success-stars">✦ ✦ ✦ ✦</div>
+        <h2>You're part of the proof.</h2>
+        <p>Your response has been recorded.<br>We'll keep you updated as 808 moves forward.</p>
+      </div>
+
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
