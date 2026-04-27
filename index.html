@@ -1725,16 +1725,136 @@ section {
   white-space: nowrap;
 }
 
+/* Mobile comparison stack — hidden on desktop, shown on mobile */
+.comparison-mobile {
+  display: none;
+  margin-top: 24px;
+}
+
+.comparison-mobile-intro {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comparison-mobile-intro .s { color: var(--red); font-size: 11px; }
+
+.comparison-mobile-card {
+  border: 1px solid var(--border);
+  background: var(--white);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.comparison-mobile-card-header {
+  background: var(--blue);
+  color: var(--white);
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-mobile-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6db3f2;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.comparison-mobile-card-category {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  display: block;
+}
+
+.comparison-mobile-row {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.comparison-mobile-row:last-child { border-bottom: none; }
+
+.comparison-mobile-row.chicago {
+  background: rgba(200, 16, 46, 0.04);
+}
+
+.comparison-mobile-city {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--blue);
+  letter-spacing: -0.005em;
+}
+
+.comparison-mobile-row.chicago .comparison-mobile-city {
+  color: var(--red);
+}
+
+.comparison-mobile-content {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.comparison-mobile-content strong {
+  display: block;
+  font-family: 'Instrument Serif', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+  letter-spacing: -0.005em;
+}
+
+.comparison-mobile-content .meta {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 3px;
+}
+
+.comparison-mobile-content .empty {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--red);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.comparison-mobile-content .partial {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #b8763a;
+  display: block;
+  margin-bottom: 4px;
+}
+
 @media (max-width: 900px) {
   .comparison-intro { grid-template-columns: 1fr; gap: 24px; }
-  .comparison-row { grid-template-columns: 1fr; }
-  .comparison-row .cell {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding: 20px;
-  }
-  .comparison-row .cell:last-child { border-bottom: none; }
-  .comparison-row.header .cell { border-right-color: rgba(255,255,255,0.15); border-bottom-color: rgba(255,255,255,0.15); }
+  .comparison-table { display: none; }
+  .comparison-mobile { display: block; }
   .comparison-closer { grid-template-columns: 1fr; gap: 16px; padding: 32px 24px; }
   .comparison-closer-tag { white-space: normal; }
 }
@@ -2786,6 +2906,191 @@ footer {
           <div>
             <span class="empty-state">The opportunity.</span>
             <span class="empty-state-meta">Project 808 is the proposal to close the gap.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile-only stacked comparison cards -->
+    <div class="comparison-mobile">
+      <div class="comparison-mobile-intro"><span class="s">✦</span> Side-by-side · Scroll to compare</div>
+
+      <!-- Card 01 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">01 · Flagship Facility</span>
+          <span class="comparison-mobile-card-category">Where designers go to make.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>Futureworks Makerspace</strong>
+            15,000 sq ft · Brooklyn Army Terminal
+            <span class="meta">Opened 2019 · NYC partnership</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>Octavia Lab</strong>
+            Inside LA Public Library Central
+            <span class="meta">Free with library card · Downtown LA</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="empty">— None —</span>
+            <span class="meta">No publicly funded creative manufacturing studio exists in the city.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">02 · Citywide Network</span>
+          <span class="comparison-mobile-card-category">How wide the access reaches.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>Futureworks Shops</strong>
+            11-studio fabrication network across all 5 boroughs
+            <span class="meta">Coworking + equipment access</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>Maker City LA</strong>
+            60,000 sq ft · Downtown LA
+            <span class="meta">Apparel + entertainment industry focus</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="empty">— None —</span>
+            <span class="meta">Resources exist inside schools and corporate offices, with no public bridge.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 03 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">03 · Fashion Infrastructure</span>
+          <span class="comparison-mobile-card-category">Industry-grade support for designers.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>Garment District + FMI Grants</strong>
+            Fashion Manufacturing Initiative · matching grant fund
+            <span class="meta">CFDA Production Directory · 6,500+ businesses</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>Renaissance Creative Studio</strong>
+            DTLA · Pattern, sample, small-batch production
+            <span class="meta">Octavia Lab: sewing, sergers, embroidery, heat press</span>
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="empty">— None —</span>
+            <span class="meta">Chicago designers send work to LA, NYC, or overseas to access these tools.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 04 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">04 · Tariff-era Readiness</span>
+          <span class="comparison-mobile-card-category">Built for the moment we're in.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>Positioned to absorb demand</strong>
+            Garment District + Brooklyn manufacturing already scaling for the tariff-driven shift to domestic production.
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>Positioned to absorb demand</strong>
+            DTLA fashion manufacturing district + small-batch studios already serving designers reshoring from overseas.
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="empty">— Caught flat-footed —</span>
+            <span class="meta">With tariffs on Chinese apparel at 41–61%, Chicago designers can no longer afford overseas production but have no domestic alternative in their own city.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 05 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">05 · Public Equipment Access</span>
+          <span class="comparison-mobile-card-category">Production-grade tools for the public.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>Yes</strong>
+            CNC, laser, 3D print, sewing, prototyping — membership-based at affordable rates.
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>Yes</strong>
+            Laser, CNC mill, large-format print, vinyl, 3D print, sewing, sergers, embroidery, heat press.
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="partial">— Hobbyist scale only —</span>
+            <span class="meta">Chicago Public Library has small consumer-grade equipment (Cricut, desktop 3D printers, hobby sewing) — useful for personal projects, but not built for the production volume, materials, or finish quality professional creatives need.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 06 -->
+      <div class="comparison-mobile-card">
+        <div class="comparison-mobile-card-header">
+          <span class="comparison-mobile-card-label">06 · City Backing</span>
+          <span class="comparison-mobile-card-category">Who's funding the infrastructure.</span>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">New York</div>
+          <div class="comparison-mobile-content">
+            <strong>NYC EDC funded</strong>
+            $73M projected economic impact at Brooklyn site alone.
+          </div>
+        </div>
+        <div class="comparison-mobile-row">
+          <div class="comparison-mobile-city">Los Angeles</div>
+          <div class="comparison-mobile-content">
+            <strong>LA Public Library + LACI</strong>
+            Civic + workforce-development funded.
+          </div>
+        </div>
+        <div class="comparison-mobile-row chicago">
+          <div class="comparison-mobile-city">Chicago</div>
+          <div class="comparison-mobile-content">
+            <span class="empty">The opportunity.</span>
+            <span class="meta">Project 808 is the proposal to close the gap.</span>
           </div>
         </div>
       </div>
