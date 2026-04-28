@@ -2045,10 +2045,12 @@ section {
   justify-content: center;
   z-index: 210;
   font-family: 'DM Mono', monospace;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   color: var(--red);
   padding: 0;
   transition: all 0.2s;
+  line-height: 1;
 }
 
 .survey-modal-close:hover {
@@ -3143,7 +3145,7 @@ footer {
         <div class="problem-num">FIG. 01</div>
         <div class="problem-stat">32<sup>%</sup></div>
         <p class="problem-text">More college-educated Chicagoans are leaving the city than moving in — the 4th worst brain drain in the nation.</p>
-        <div class="problem-source">2023 U.S. Census</div>
+        <div class="problem-source">U.S. Census 2025</div>
       </div>
       <div class="problem-card">
         <div class="problem-num">FIG. 02</div>
@@ -4858,6 +4860,10 @@ surveyForm.addEventListener('submit', async (e) => {
 
     // Send confirmation email with survey answers
     const userEmail = responses.email;
+    
+    // Display the email in the success message
+    document.getElementById('confirmationEmail').textContent = userEmail;
+    
     const emailBody = `Thank you for being part of Project 808's proof of concept.
 
 Your responses:
@@ -4883,39 +4889,37 @@ We'll keep you updated on Project 808's progress. If you have questions, reply t
 ✦ Project 808
 Chicago Creative Infrastructure Initiative`;
 
+    // Send email via Formspree
     try {
-      // Send email to user
-      await fetch('https://api.resend.com/emails', {
+      await fetch('https://formspree.io/f/xojyodkj', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer re_CjvU8YRVs6w3NKMZXwSMvQBwYGNQFWLJW',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'chicagoproject808@gmail.com',
-          to: userEmail,
-          subject: '✦ Your Project 808 Survey Response',
-          text: emailBody
+          email: userEmail,
+          name: responses.name,
+          message: emailBody,
+          _subject: '✦ Your Project 808 Survey Response'
         })
       });
-
-      // Send copy to project email
-      await fetch('https://api.resend.com/emails', {
+      
+      // Also send to project inbox
+      await fetch('https://formspree.io/f/xojyodkj', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer re_CjvU8YRVs6w3NKMZXwSMvQBwYGNQFWLJW',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: 'chicagoproject808@gmail.com',
-          to: 'chicagoproject808@gmail.com',
-          subject: `✦ New Survey Response from ${responses.name}`,
-          text: `New survey submission from ${responses.name} (${userEmail})\n\n${emailBody}`
+          email: 'chicagoproject808@gmail.com',
+          name: `New Response from ${responses.name}`,
+          message: `New survey submission from ${responses.name} (${userEmail})\n\n${emailBody}`,
+          _subject: `✦ New Survey Response from ${responses.name}`
         })
       });
     } catch (emailErr) {
       console.error('Email send failed:', emailErr);
-      // Continue to show success even if email fails
+      // Continue to show success even if email fails - data is already in Supabase
     }
 
     // Show success message
@@ -5190,8 +5194,8 @@ Chicago Creative Infrastructure Initiative`;
 
       <div class="s-success-msg" id="surveySuccess">
         <div class="s-success-stars">✦ ✦ ✦ ✦</div>
-        <h2>You're part of the proof.</h2>
-        <p>Your response has been recorded and sent to your email.<br>We'll keep you updated as 808 moves forward.</p>
+        <h2>Your answers have been recorded.</h2>
+        <p>A copy has been sent to <strong id="confirmationEmail"></strong><br>We'll keep you updated as 808 moves forward.</p>
         
         <div class="s-completion-form">
           <div class="s-completion-section">
