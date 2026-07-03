@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project 808 — A Creative Manufacturing Studio for Chicago</title>
+<title>Project 808 ‚Äî A Creative Manufacturing Studio for Chicago</title>
 <meta name="description" content="Project 808 is a creative manufacturing studio building Chicago's missing infrastructure for makers. Help us retain the talent this city trains." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@ body {
   line-height: 1.6;
 }
 
-/* ───── NAV ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ NAV ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -107,7 +107,7 @@ nav {
 .nav-cta:hover::after { transform: scaleX(1); }
 .nav-cta span { position: relative; z-index: 1; }
 
-/* ───── HAMBURGER ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ HAMBURGER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .menu-toggle {
   background: transparent;
   border: 1px solid var(--border);
@@ -158,7 +158,7 @@ nav {
   background: var(--white);
 }
 
-/* ───── MENU OVERLAY ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ MENU OVERLAY ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -192,7 +192,7 @@ nav {
 }
 
 .menu-overlay::after {
-  content: '✦';
+  content: '‚ú¶';
   position: absolute;
   font-family: 'Instrument Serif', serif;
   font-size: clamp(280px, 40vw, 500px);
@@ -368,7 +368,7 @@ body.menu-open {
   overflow: hidden;
 }
 
-/* ───── HERO ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ HERO ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .hero {
   background: var(--blue);
   color: var(--white);
@@ -525,7 +525,7 @@ body.menu-open {
 .hero-meta span { display: flex; align-items: center; gap: 10px; }
 .hero-meta .dot { width: 4px; height: 4px; background: var(--red); border-radius: 50%; }
 
-/* ───── STRIPE DIVIDER ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ STRIPE DIVIDER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .stripe-divider {
   height: 5px;
   background: linear-gradient(to right,
@@ -535,7 +535,7 @@ body.menu-open {
   );
 }
 
-/* ───── SECTION FRAMEWORK ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ SECTION FRAMEWORK ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 section {
   padding: 96px clamp(24px, 6vw, 64px);
   position: relative;
@@ -579,7 +579,7 @@ section {
   color: var(--blue);
 }
 
-/* ───── PROBLEM ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ PROBLEM ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .problem { background: var(--white); }
 
 .problem-grid {
@@ -593,12 +593,22 @@ section {
   .problem-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Cards are real buttons now: hover promises interaction, click delivers it.
+   Long copy lives in the expansion so the resting state stays scannable. */
 .problem-card {
   padding: 32px 28px 28px;
   border: 1px solid var(--border);
   background: var(--off-white);
   transition: all 0.2s;
   position: relative;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  display: block;
 }
 
 .problem-card:hover {
@@ -606,12 +616,100 @@ section {
   background: var(--blue-light);
 }
 
-.problem-card.highlight {
-  background: var(--blue);
-  color: var(--white);
-  border-color: var(--blue);
+.problem-card:focus-visible {
+  outline: 2px solid var(--blue-mid);
+  outline-offset: 2px;
 }
-.problem-card.highlight:hover { background: var(--blue-mid); }
+
+.problem-num {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.problem-toggle {
+  color: var(--blue);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.problem-card:hover .problem-toggle { color: var(--red); }
+
+/* One-line narrative bridging headline ‚Üí figures */
+.problem-lead {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 62ch;
+  margin: -8px 0 8px;
+}
+.problem-lead strong { color: var(--blue); font-weight: 400; }
+
+/* Plain-English headline on each card ‚Äî the story before the number */
+.problem-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.problem-title em { font-style: italic; color: var(--blue); }
+
+.problem-sub {
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* ‚îÄ‚îÄ Motion: staggered card entry, growing bars, sweeping donut ‚îÄ‚îÄ */
+.problem-grid .problem-card {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s ease calc(var(--i, 0) * 130ms),
+    transform 0.65s ease calc(var(--i, 0) * 130ms),
+    border-color 0.2s, background 0.2s;
+}
+.problem.in-view .problem-card {
+  opacity: 1;
+  transform: none;
+}
+
+.problem-chart .bar {
+  width: 0;
+  transition: width 1.1s cubic-bezier(0.22, 0.8, 0.3, 1) calc(var(--i, 0) * 130ms + 450ms);
+}
+.problem.in-view .problem-chart .bar { width: var(--w); }
+
+.problem-chart .donut-arc {
+  stroke-dasharray: 0 113.1;
+  transition: stroke-dasharray 1.2s cubic-bezier(0.22, 0.8, 0.3, 1) 580ms;
+}
+.problem.in-view .problem-chart .donut-arc { stroke-dasharray: 88.2 113.1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .problem-grid .problem-card { opacity: 1; transform: none; transition: border-color 0.2s, background 0.2s; }
+  .problem-chart .bar { width: var(--w); transition: none; }
+  .problem-chart .donut-arc { stroke-dasharray: 88.2 113.1; transition: none; }
+}
+
+.problem-detail {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease;
+  margin-top: 0;
+}
+.problem-card[aria-expanded="true"] .problem-detail {
+  max-height: 320px;
+  opacity: 1;
+  margin-top: 16px;
+}
 
 .problem-num {
   font-size: 9px;
@@ -619,8 +717,6 @@ section {
   color: var(--red);
   margin-bottom: 16px;
 }
-
-.problem-card.highlight .problem-num { color: #6db3f2; }
 
 .problem-stat {
   font-family: 'Instrument Serif', serif;
@@ -632,13 +728,21 @@ section {
   color: var(--blue);
 }
 
-.problem-card.highlight .problem-stat { color: var(--white); }
-
 .problem-stat sup {
   font-size: 0.45em;
   font-weight: 400;
   vertical-align: 0.5em;
   margin-left: 0.05em;
+}
+
+/* TASK 2: compact data-viz chart inside each Problem card */
+.problem-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 220px;
+  margin: -4px 0 18px;
+  color: var(--blue);
 }
 
 .problem-text {
@@ -648,8 +752,6 @@ section {
   letter-spacing: 0.02em;
 }
 
-.problem-card.highlight .problem-text { color: rgba(255,255,255,0.65); }
-
 .problem-source {
   margin-top: 20px;
   padding-top: 16px;
@@ -658,11 +760,6 @@ section {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.problem-card.highlight .problem-source {
-  border-color: rgba(255,255,255,0.15);
-  color: rgba(255,255,255,0.4);
 }
 
 /* Tariff moment callout */
@@ -714,7 +811,120 @@ section {
   .tariff-moment { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
 }
 
-/* ───── GAP ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ PHOTO BAND (Task 1) ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+/* Halftone/duotone placeholder blocks. Drop <img> into .photo-frame to replace
+   the silhouette ‚Äî the ::before halftone dots and ::after duotone overlay
+   apply to real images identically. */
+.photo-band {
+  background: var(--white);
+  padding: 96px clamp(24px, 4vw, 64px);
+}
+.photo-band-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 560px) {
+  .photo-band-inner { grid-template-columns: 1fr; }
+}
+
+.photo-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--blue);
+  overflow: hidden;
+  isolation: isolate;
+}
+.photo-frame.full {
+  grid-column: 1 / -1;
+  aspect-ratio: 21 / 9;
+}
+@media (max-width: 560px) {
+  .photo-frame.full { aspect-ratio: 16 / 10; }
+}
+
+/* Base media layer ‚Äî full-color photography, no filter */
+.photo-frame > img,
+.photo-frame > .photo-silhouette {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+/* Soft bottom scrim so captions stay legible on bright photos */
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,22,40,0.55) 0%, rgba(10,22,40,0) 28%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.photo-frame .photo-corner {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--red);
+  text-shadow: 0 1px 6px rgba(255,255,255,0.5);
+  z-index: 4;
+}
+.photo-frame .photo-caption .cap-title,
+.photo-frame .photo-caption .cap-meta {
+  text-shadow: 0 1px 8px rgba(10,22,40,0.8);
+}
+.photo-frame .photo-corner-right {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  color: rgba(255,255,255,0.45);
+  z-index: 4;
+}
+.photo-frame .photo-caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 4;
+}
+.photo-frame .photo-caption .cap-title {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--white);
+  line-height: 1.15;
+}
+.photo-frame .photo-caption .cap-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Photo inside a model-card (Task 1 pt B) ‚Äî sits above the model text */
+.model-card .photo-frame {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 28px;
+}
+.model-card:first-child .photo-frame { background: var(--ink); }
+
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ GAP ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .gap {
   background: var(--blue);
   color: var(--white);
@@ -771,7 +981,7 @@ section {
   letter-spacing: 0.02em;
 }
 
-/* ───── INTRO ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ INTRO ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .intro {
   padding: 140px clamp(24px, 6vw, 64px);
   background: var(--off-white);
@@ -781,7 +991,7 @@ section {
 }
 
 .intro::before {
-  content: '✦';
+  content: '‚ú¶';
   position: absolute;
   font-size: clamp(280px, 50vw, 600px);
   color: var(--red-light);
@@ -836,7 +1046,7 @@ section {
   line-height: 1.5;
 }
 
-/* ───── MODEL ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ MODEL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .model { background: var(--white); }
 
 .model-grid {
@@ -860,8 +1070,7 @@ section {
   color: var(--white);
 }
 
-.model-card:first-child:hover { background: var(--blue-mid); }
-.model-card:last-child:hover { background: var(--blue-light); }
+/* No hover states ‚Äî model cards are informational, not clickable */
 
 .model-layer {
   font-size: 9px;
@@ -925,7 +1134,7 @@ section {
 }
 .model-card:last-child .model-perfect { color: var(--ink); }
 
-/* ───── EQUIPMENT ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ EQUIPMENT ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .equipment { background: var(--off-white); }
 
 .equipment-grid {
@@ -961,6 +1170,24 @@ section {
 
 .equipment-item:hover .equipment-num { color: #6db3f2; }
 .equipment-item:hover .equipment-cta { color: var(--white); opacity: 1; transform: translateY(0); }
+
+/* TASK 3: small illustration nested top-right of card, secondary to copy */
+.equipment-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  color: var(--blue);
+  opacity: 0.35;
+  transition: opacity 0.2s, color 0.2s;
+  pointer-events: none;
+}
+.equipment-item:hover .equipment-icon {
+  color: #6db3f2;
+  opacity: 0.9;
+}
+.equipment-item .equipment-name { padding-right: 52px; }
 
 .equipment-num {
   font-size: 9px;
@@ -1022,7 +1249,103 @@ section {
   font-family: 'DM Mono', monospace;
 }
 
-/* ───── EQUIPMENT MODAL ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ FLOOR PLAN (Phase 01, inside section 04) ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
+.floorplan-block {
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.floorplan-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.floorplan-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.floorplan-title em { font-style: italic; color: var(--blue); }
+
+.floorplan-kicker {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.floorplan-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: var(--white);
+}
+
+.floorplan-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-top: none;
+}
+@media (max-width: 1000px) { .floorplan-legend { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .floorplan-legend { grid-template-columns: 1fr; } }
+
+.floorplan-legend-item {
+  background: var(--white);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.floorplan-legend-item .chip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.floorplan-legend-item .chip {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+.floorplan-legend-item .zone {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.floorplan-legend-item .sqft {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--blue);
+}
+.floorplan-legend-item .what {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.floorplan-note {
+  margin-top: 16px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.floorplan-note .s { color: var(--red); }
+
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ EQUIPMENT MODAL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .eq-modal {
   position: fixed;
   inset: 0;
@@ -1258,7 +1581,7 @@ section {
   .eq-modal-body { padding: 32px 24px; max-height: none; }
 }
 
-/* ───── TOOL PARTNERSHIPS ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ TOOL PARTNERSHIPS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .partnerships {
   background: var(--white);
   border-top: 1px solid var(--border);
@@ -1298,14 +1621,13 @@ section {
 }
 
 .partner-tier:last-child { border-right: none; }
-.partner-tier:hover { background: var(--blue-light); }
+/* No hover ‚Äî tier cards are informational */
 
 .partner-tier.featured {
   background: var(--blue);
   color: var(--white);
 }
 
-.partner-tier.featured:hover { background: var(--blue-mid); }
 
 .partner-tier-eyebrow {
   font-size: 9px;
@@ -1369,7 +1691,7 @@ section {
 .partner-tier.featured .partner-tier-list li { color: rgba(255,255,255,0.85); }
 
 .partner-tier-list li::before {
-  content: '✦';
+  content: '‚ú¶';
   color: var(--red);
   font-size: 9px;
   flex-shrink: 0;
@@ -1418,9 +1740,7 @@ section {
   background: var(--white);
 }
 
-.partner-brand:hover {
-  background: var(--blue-light);
-}
+/* No hover ‚Äî brand cells are informational */
 
 .partner-brand-cat {
   font-size: 9px;
@@ -1512,7 +1832,7 @@ section {
   .partnerships-cta-button { width: 100%; text-align: center; }
 }
 
-/* ───── COMPARISON ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ COMPARISON ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .comparison {
   background: var(--off-white);
   border-top: 1px solid var(--border);
@@ -1743,7 +2063,7 @@ section {
   white-space: nowrap;
 }
 
-/* Mobile comparison stack — hidden on desktop, shown on mobile */
+/* Mobile comparison stack ‚Äî hidden on desktop, shown on mobile */
 .comparison-mobile {
   display: none;
   margin-top: 24px;
@@ -1877,7 +2197,7 @@ section {
   .comparison-closer-tag { white-space: normal; }
 }
 
-/* ───── SURVEY BANNER ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ SURVEY BANNER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .survey-banner {
   background: var(--white);
   padding: 0 clamp(24px, 6vw, 64px);
@@ -1913,7 +2233,7 @@ section {
 }
 
 .survey-banner-inner::after {
-  content: '✦';
+  content: '‚ú¶';
   position: absolute;
   font-family: 'Instrument Serif', serif;
   font-size: clamp(200px, 30vw, 380px);
@@ -2013,7 +2333,7 @@ section {
   .survey-banner-cta { width: 100%; justify-content: center; }
 }
 
-/* ───── SURVEY MODAL ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ SURVEY MODAL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .survey-modal {
   position: fixed;
   inset: 0;
@@ -2357,7 +2677,7 @@ section {
 }
 
 .survey-modal .s-section-divider::after {
-  content: '✦';
+  content: '‚ú¶';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2516,7 +2836,7 @@ section {
 .s-completion-btn span { position: relative; z-index: 1; }
 .s-completion-btn:hover span { color: var(--white); }
 
-/* ───── IMPACT ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ IMPACT ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .impact {
   background: var(--blue);
   color: var(--white);
@@ -2590,8 +2910,155 @@ section {
   letter-spacing: 0.02em;
 }
 
-/* ───── ASK ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ ASK ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .ask { background: var(--white); }
+
+/* Budget breakdown ‚Äî lives in section 04, after the floor plan */
+.budget-block {
+  margin-top: 80px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 40px clamp(24px, 3vw, 48px);
+}
+
+.budget-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.budget-total {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1;
+  color: var(--blue);
+}
+.budget-total em { font-style: italic; }
+
+.budget-total-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+/* Per-category rows: name + amounts, a lean/full bar, and a plain-language
+   line saying what the money actually buys. All bars share one $0‚Äì$250K scale. */
+.budget-cats { display: flex; flex-direction: column; gap: 32px; }
+
+.budget-cat { display: flex; flex-direction: column; gap: 10px; }
+
+.bc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.bc-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.bc-name .k { width: 10px; height: 10px; display: inline-block; flex-shrink: 0; }
+.bc-amt {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.bc-amt strong { color: var(--ink); font-weight: 500; }
+
+.bc-track {
+  display: flex;
+  height: 18px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+}
+.bc-lean { height: 100%; }
+.bc-add  { height: 100%; opacity: 0.25; }
+
+.s-facility  { background: var(--blue); }
+.s-equipment { background: var(--red); }
+.s-ops       { background: #6db3f2; }
+.s-marketing { background: var(--ink); }
+.s-reserve   { background: #8a99b5; }
+
+.bc-desc {
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  max-width: 90ch;
+}
+
+/* Ventilation callout inside the facility row */
+.bc-flag {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-top: 4px;
+  padding: 12px 16px;
+  background: var(--red-light);
+  border-left: 3px solid var(--red);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.bc-flag .s { color: var(--red); flex-shrink: 0; }
+
+.budget-scale {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+/* How-to-read key ‚Äî sits ABOVE the rows so the reader is oriented first */
+.budget-howto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 14px 18px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.budget-howto .ht-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  white-space: nowrap;
+}
+.budget-howto .ht-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.budget-howto .ht-item strong { color: var(--ink); font-weight: 500; }
+.budget-howto .swatch {
+  width: 26px;
+  height: 10px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.budget-howto .swatch.solid { background: var(--blue); }
+.budget-howto .swatch.tint { background: var(--blue); opacity: 0.25; }
 
 .ask-grid {
   display: grid;
@@ -2600,17 +3067,12 @@ section {
   margin-top: 24px;
 }
 
+/* Static cards ‚Äî no hover state; they aren't interactive */
 .ask-card {
   padding: 40px 32px;
   border: 1px solid var(--border);
   background: var(--off-white);
   position: relative;
-  transition: all 0.2s;
-}
-
-.ask-card:hover {
-  border-color: var(--blue-mid);
-  background: var(--blue-light);
 }
 
 .ask-card-num {
@@ -2638,7 +3100,7 @@ section {
   letter-spacing: 0.02em;
 }
 
-/* ───── FOUNDER ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ FOUNDER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .founder { background: var(--off-white); }
 
 .founder-quote {
@@ -2682,7 +3144,7 @@ section {
 }
 
 .founder-mark::before {
-  content: '✦';
+  content: '‚ú¶';
   position: absolute;
   top: -8px; right: -8px;
   color: var(--red);
@@ -2731,7 +3193,7 @@ section {
   letter-spacing: 0;
 }
 
-/* ───── FORMS ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ FORMS ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .forms {
   background: var(--blue);
   color: var(--white);
@@ -2885,7 +3347,7 @@ section {
 .form-success.show { display: block; }
 .form-success .stars { color: var(--red); margin-right: 8px; letter-spacing: 4px; }
 
-/* ───── FOOTER ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ FOOTER ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 footer {
   background: var(--white);
   border-top: 1px solid var(--border);
@@ -2957,7 +3419,7 @@ footer {
 
 .footer-bottom-right { display: flex; gap: 24px; }
 
-/* ───── REVEAL ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ REVEAL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -2968,7 +3430,7 @@ footer {
   transform: translateY(0);
 }
 
-/* ───── RESPONSIVE ───── */
+/* ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ RESPONSIVE ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ */
 @media (max-width: 900px) {
   nav { padding: 12px 20px; }
   .nav-links { gap: 10px; }
@@ -2999,7 +3461,7 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <span class="star">✦</span>
+    <span class="star">‚ú¶</span>
     <span>Project <em>808</em></span>
   </div>
   <div class="nav-links">
@@ -3025,9 +3487,9 @@ footer {
   <div class="menu-inner">
     <div class="menu-meta">
       <div>
-        <div class="menu-eyebrow"><span class="s">✦</span> Site Index</div>
+        <div class="menu-eyebrow"><span class="s">‚ú¶</span> Site Index</div>
         <h2 class="menu-title">Build this <em>with</em> us.</h2>
-        <p class="menu-tag">A campaign for the creative manufacturing studio Chicago is missing — and the makers it keeps losing.</p>
+        <p class="menu-tag">A campaign for the creative manufacturing studio Chicago is missing ‚Äî and the makers it keeps losing.</p>
       </div>
       <div class="menu-meta-bottom">
         <div class="row"><span>Chicago, IL</span><span class="red">2026</span></div>
@@ -3037,64 +3499,64 @@ footer {
 
     <ul class="menu-list">
       <li><a href="#" class="menu-survey" id="menuSurveyLink">
-        <span class="menu-num">✦</span>
+        <span class="menu-num">‚ú¶</span>
         <span class="menu-label">Take the Survey</span>
-        <span class="menu-sub">Add your voice to the case for Project 808 — 2 minutes.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">Add your voice to the case for Project 808 ‚Äî 2 minutes.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#problem" data-menu-link>
         <span class="menu-num">01</span>
         <span class="menu-label">The Problem</span>
         <span class="menu-sub">Why Chicago is losing the creatives it raises.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#vision" data-menu-link>
         <span class="menu-num">02</span>
         <span class="menu-label">The Vision</span>
         <span class="menu-sub">A place where ideas actually get made.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#model" data-menu-link>
         <span class="menu-num">03</span>
         <span class="menu-label">The Model</span>
-        <span class="menu-sub">Two layers — bring your idea, or rent the machines.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">Two layers ‚Äî bring your idea, or rent the machines.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#equipment" data-menu-link>
         <span class="menu-num">04</span>
         <span class="menu-label">The Studio</span>
-        <span class="menu-sub">Production-grade equipment — click to see what each builds.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">Production-grade equipment ‚Äî click to see what each builds.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#partnerships" data-menu-link>
         <span class="menu-num">05</span>
         <span class="menu-label">Tool Partners</span>
-        <span class="menu-sub">How we stock the studio — through industry partnerships, not retail.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">How we stock the studio ‚Äî through industry partnerships, not retail.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#comparison" data-menu-link>
         <span class="menu-num">06</span>
         <span class="menu-label">Comparable Cities</span>
-        <span class="menu-sub">What NYC and LA already built — and Chicago hasn't.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">What NYC and LA already built ‚Äî and Chicago hasn't.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#impact" data-menu-link>
         <span class="menu-num">07</span>
         <span class="menu-label">The Impact</span>
         <span class="menu-sub">What Chicago gains when we build it.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#founder" data-menu-link>
         <span class="menu-num">08</span>
         <span class="menu-label">The Founder</span>
-        <span class="menu-sub">Charlesa Thompson — building for Chicago, in Chicago.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-sub">Charlesa Thompson ‚Äî building for Chicago, in Chicago.</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
       <li><a href="#partner" data-menu-link>
         <span class="menu-num">09</span>
         <span class="menu-label">Get Involved</span>
         <span class="menu-sub">Stay close, partner with us, or fund the work.</span>
-        <span class="menu-arrow">→</span>
+        <span class="menu-arrow">‚Üí</span>
       </a></li>
     </ul>
   </div>
@@ -3104,17 +3566,17 @@ footer {
 <header class="hero">
   <div class="hero-inner">
     <div class="stars-row">
-      <span class="star-icon">✦</span>
-      <span class="star-icon">✦</span>
-      <span class="star-icon">✦</span>
-      <span class="star-icon">✦</span>
+      <span class="star-icon">‚ú¶</span>
+      <span class="star-icon">‚ú¶</span>
+      <span class="star-icon">‚ú¶</span>
+      <span class="star-icon">‚ú¶</span>
     </div>
 
-    <div class="hero-tag">A campaign for Chicago's makers · 2026</div>
+    <div class="hero-tag">A campaign for Chicago's makers ¬∑ 2026</div>
 
     <h1>A city that <em>trains</em> creatives shouldn't <em>lose</em> them.</h1>
 
-    <p class="lead">Project 808 is a creative manufacturing studio for Chicago's next generation of makers — bridging institutional access and independent production for the talent this city raises.</p>
+    <p class="lead">Project 808 is a creative manufacturing studio for Chicago's next generation of makers ‚Äî bridging institutional access and independent production for the talent this city raises.</p>
 
     <div class="hero-rule">
       <span class="l"></span>
@@ -3127,7 +3589,7 @@ footer {
 
   <div class="hero-meta">
     <span><span class="dot"></span> Chicago, IL</span>
-    <span>Phase 01 · 2026 <span class="dot"></span></span>
+    <span>Phase 01 ¬∑ 2026 <span class="dot"></span></span>
   </div>
 </header>
 
@@ -3137,49 +3599,162 @@ footer {
 <!-- PROBLEM -->
 <section class="problem reveal" id="problem">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 01 — The Problem</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 01 ‚Äî The Problem</div>
     <h2 class="section-headline">Chicago is losing the <em>creatives it raises.</em></h2>
 
+    <p class="problem-lead">Four numbers, one story: <strong>the talent leaves</strong>, the grads who stay can't practice their craft, the tools cost too much to own ‚Äî and the overseas workaround just closed.</p>
+
+    <div class="equipment-hint" style="margin: 0 0 24px;">
+      <span class="star">‚ú¶</span>
+      <span>Click any figure for the full story</span>
+      <span class="arrow">‚Üí</span>
+    </div>
+
     <div class="problem-grid">
-      <div class="problem-card highlight">
-        <div class="problem-num">FIG. 01</div>
-        <div class="problem-stat">32<sup>%</sup></div>
-        <p class="problem-text">More college-educated Chicagoans are leaving the city than moving in — the 4th worst brain drain in the nation.</p>
-        <div class="problem-source">U.S. Census 2025</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-num">FIG. 02</div>
-        <div class="problem-stat">78<sup>%</sup></div>
-        <p class="problem-text">Of Illinois arts graduates work outside their creative field after graduation. Not from lack of talent — from lack of infrastructure.</p>
-        <div class="problem-source">SNAAP Report</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-num">FIG. 03</div>
-        <div class="problem-stat">$10<sup>K+</sup></div>
-        <p class="problem-text">The cost of a single CNC machine before upkeep. Professional production equipment is completely out of reach for new graduates.</p>
-        <div class="problem-source">Industry pricing, 2025</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-num">FIG. 04</div>
-        <div class="problem-stat">35<sup>%</sup></div>
-        <p class="problem-text">Average tariff rate on US apparel imports as of late 2025 — up from 14.7% a year earlier. Overseas production is no longer the affordable default for emerging designers.</p>
-        <div class="problem-source">Sheng Lu, Univ. of Delaware</div>
-      </div>
+      <button class="problem-card" type="button" aria-expanded="false" style="--i: 0">
+        <div class="problem-num">FIG. 01 <span class="problem-toggle">More +</span></div>
+        <h3 class="problem-title">The talent is <em>leaving.</em></h3>
+        <div class="problem-stat"><span class="count" data-target="32">32</span><sup>%</sup></div>
+        <p class="problem-sub">More college graduates leave Chicago than arrive ‚Äî the 4th worst outflow in the nation.</p>
+        <!-- Chart: net outflow ‚Äî bar comparison of leaving vs arriving -->
+        <svg class="problem-chart" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Outbound 32% higher than inbound">
+          <text x="0" y="10" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">OUT</text>
+          <rect class="bar" style="--w:150px" x="30" y="4" width="150" height="8" fill="#C8102E"/>
+          <text x="185" y="11" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1" opacity="0.6">+32%</text>
+          <text x="0" y="30" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">IN</text>
+          <rect class="bar" style="--w:102px" x="30" y="24" width="102" height="8" fill="#d3dbe8"/>
+          <text x="137" y="31" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1" opacity="0.35">baseline</text>
+          <line x1="30" y1="46" x2="180" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+          <text x="30" y="54" fill="currentColor" font-family="DM Mono,monospace" font-size="6" letter-spacing="1.2" opacity="0.4">NET FLOW ¬∑ COLLEGE-EDUCATED</text>
+        </svg>
+        <div class="problem-detail">
+          <p class="problem-text">More college-educated Chicagoans are leaving the city than moving in. Every departure is trained talent ‚Äî and spending power ‚Äî Chicago paid to develop and then lost.</p>
+          <div class="problem-source">U.S. Census 2025</div>
+        </div>
+      </button>
+      <button class="problem-card" type="button" aria-expanded="false" style="--i: 1">
+        <div class="problem-num">FIG. 02 <span class="problem-toggle">More +</span></div>
+        <h3 class="problem-title">The grads lose <em>their craft.</em></h3>
+        <div class="problem-stat"><span class="count" data-target="78">78</span><sup>%</sup></div>
+        <p class="problem-sub">Of Illinois arts graduates end up working outside their creative field.</p>
+        <!-- Chart: donut showing 78% outside creative field -->
+        <svg class="problem-chart" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="78% of grads work outside creative field">
+          <g transform="translate(24,28)">
+            <circle r="18" fill="none" stroke="#d3dbe8" stroke-width="6"/>
+            <circle class="donut-arc" r="18" fill="none" stroke="#C8102E" stroke-width="6"
+                    stroke-dasharray="88.2 113.1"
+                    stroke-dashoffset="28.3"
+                    transform="rotate(-90)"/>
+          </g>
+          <text x="56" y="20" fill="currentColor" font-family="DM Mono,monospace" font-size="8" letter-spacing="1.5" opacity="0.7">OUTSIDE FIELD</text>
+          <rect x="56" y="26" width="8" height="8" fill="#C8102E"/>
+          <text x="68" y="33" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.6">78%</text>
+          <rect x="100" y="26" width="8" height="8" fill="#d3dbe8"/>
+          <text x="112" y="33" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.6">22%</text>
+          <text x="56" y="50" fill="currentColor" font-family="DM Mono,monospace" font-size="6" letter-spacing="1.2" opacity="0.4">ILLINOIS ARTS GRADS</text>
+        </svg>
+        <div class="problem-detail">
+          <p class="problem-text">Of Illinois arts graduates work outside their creative field after graduation. Not from lack of talent ‚Äî from lack of infrastructure to keep making after the school doors close.</p>
+          <div class="problem-source">SNAAP Report</div>
+        </div>
+      </button>
+      <button class="problem-card" type="button" aria-expanded="false" style="--i: 2">
+        <div class="problem-num">FIG. 03 <span class="problem-toggle">More +</span></div>
+        <h3 class="problem-title">The tools are <em>out of reach.</em></h3>
+        <div class="problem-stat">$<span class="count" data-target="10">10</span><sup>K+</sup></div>
+        <p class="problem-sub">The cost of one CNC machine ‚Äî a quarter of an entry-level creative salary.</p>
+        <!-- Chart: CNC cost vs entry-level annual creative wage -->
+        <svg class="problem-chart" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CNC cost 25% of entry-level annual creative wage">
+          <text x="0" y="10" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">CNC</text>
+          <rect class="bar" style="--w:45px" x="46" y="4" width="45" height="8" fill="#C8102E"/>
+          <text x="96" y="11" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.6">$10K</text>
+          <text x="0" y="30" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">WAGE</text>
+          <rect class="bar" style="--w:134px" x="46" y="24" width="134" height="8" fill="#d3dbe8"/>
+          <text x="185" y="31" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.35">~$40K</text>
+          <line x1="46" y1="46" x2="180" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+          <text x="46" y="54" fill="currentColor" font-family="DM Mono,monospace" font-size="6" letter-spacing="1.2" opacity="0.4">MACHINE COST ¬∑ 1 UNIT vs SALARY</text>
+        </svg>
+        <div class="problem-detail">
+          <p class="problem-text">The cost of a single CNC machine ‚Äî a quarter of an entry-level creative salary. A full studio setup pushes past $50,000. Ownership is out of reach for new graduates.</p>
+          <div class="problem-source">Industry pricing, 2025</div>
+        </div>
+      </button>
+      <button class="problem-card" type="button" aria-expanded="false" style="--i: 3">
+        <div class="problem-num">FIG. 04 <span class="problem-toggle">More +</span></div>
+        <h3 class="problem-title">The workaround <em>just closed.</em></h3>
+        <div class="problem-stat"><span class="count" data-target="35">35</span><sup>%</sup></div>
+        <p class="problem-sub">Tariff on US apparel imports ‚Äî overseas production is no longer the cheap default.</p>
+        <!-- Chart: tariff jump 14.7% ‚Üí 35% year-over-year -->
+        <svg class="problem-chart" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tariffs jumped from 14.7% to 35% in one year">
+          <text x="0" y="10" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">2024</text>
+          <rect class="bar" style="--w:63px" x="34" y="4" width="63" height="8" fill="#d3dbe8"/>
+          <text x="102" y="11" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.6">14.7%</text>
+          <text x="0" y="30" fill="currentColor" font-family="DM Mono,monospace" font-size="7" letter-spacing="1.4" opacity="0.6">2025</text>
+          <rect class="bar" style="--w:150px" x="34" y="24" width="150" height="8" fill="#C8102E"/>
+          <text x="188" y="31" fill="currentColor" font-family="DM Mono,monospace" font-size="7" opacity="0.6">35%</text>
+          <line x1="34" y1="46" x2="180" y2="46" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+          <text x="34" y="54" fill="currentColor" font-family="DM Mono,monospace" font-size="6" letter-spacing="1.2" opacity="0.4">US APPAREL TARIFF ¬∑ YoY</text>
+        </svg>
+        <div class="problem-detail">
+          <p class="problem-text">Up from 14.7% a year earlier. Overseas production is no longer the affordable default for emerging designers ‚Äî domestic capacity is now the opportunity.</p>
+          <div class="problem-source">Sheng Lu, Univ. of Delaware</div>
+        </div>
+      </button>
     </div>
 
     <div class="tariff-moment">
       <div class="tariff-moment-tag"><span class="pulse"></span> Why now</div>
-      <p class="tariff-moment-text">Tariffs on apparel imports have <em>more than doubled</em> in a single year. Designers who used to send small-batch production to China, Vietnam, or Bangladesh are now facing duties of <em>40–60%</em> on every piece — pricing out the freelance and emerging tier of the industry. The U.S. imports 89% of its apparel. Project 808 puts production capacity exactly where it's now most needed: domestic, accessible, and built around the people who used to outsource because it was cheaper.</p>
+      <p class="tariff-moment-text">Tariffs on apparel imports have <em>more than doubled</em> in a single year. Designers who used to send small-batch production to China, Vietnam, or Bangladesh are now facing duties of <em>40‚Äì60%</em> on every piece ‚Äî pricing out the freelance and emerging tier of the industry. The U.S. imports 89% of its apparel. Project 808 puts production capacity exactly where it's now most needed: domestic, accessible, and built around the people who used to outsource because it was cheaper.</p>
     </div>
+  </div>
+</section>
+
+<!-- ‚ïê‚ïê‚ïê TASK 1: PHOTO BAND ‚Äî bridges Problem (white) ‚Üí Gap (blue) ‚ïê‚ïê‚ïê -->
+<!-- To swap in real images: uncomment the <img> line inside each .photo-frame
+     and delete the <svg class="photo-silhouette"> block. Halftone + duotone
+     treatment applies to <img> automatically. -->
+<section class="photo-band reveal" aria-label="Studio photography">
+  <div class="photo-band-inner">
+
+    <figure class="photo-frame full">
+      <img src="assets/photo-fablab-wide.jpg" alt="Wide view of a working fabrication lab ‚Äî makers at work tables under industrial ductwork" loading="lazy" style="object-position: 50% 62%">
+      <span class="photo-corner">PL. 01</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">On the floor.</span>
+        <span class="cap-meta">Fabrication lab ¬∑ industrial-but-warm</span>
+      </figcaption>
+    </figure>
+
+    <figure class="photo-frame">
+      <img src="assets/photo-woodshop-maker.jpg" alt="Maker measuring a panel at a table saw in a wood shop" loading="lazy" style="object-position: 25% 45%">
+      <span class="photo-corner">PL. 02</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Trained hands.</span>
+        <span class="cap-meta">Wood shop ¬∑ precision work</span>
+      </figcaption>
+    </figure>
+
+    <figure class="photo-frame">
+      <img src="assets/photo-woodshop-hall.jpg" alt="Long institutional wood shop lined with workbenches and vises" loading="lazy">
+      <span class="photo-corner">PL. 03</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Access that ends at graduation.</span>
+        <span class="cap-meta">Institutional shop ¬∑ the gap, made visible</span>
+      </figcaption>
+    </figure>
+
   </div>
 </section>
 
 <!-- GAP -->
 <section class="gap reveal">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 02 — The Gap</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 02 ‚Äî The Gap</div>
 
-    <p class="gap-statement">Chicago trains <em>world-class creative talent</em> — then takes away their tools the moment they graduate.</p>
+    <p class="gap-statement">Chicago trains <em>world-class creative talent</em> ‚Äî then takes away their tools the moment they graduate.</p>
 
     <div class="gap-grid">
       <div>
@@ -3195,7 +3770,7 @@ footer {
       <div>
         <div class="gap-num">iii.</div>
         <h3 class="gap-title">No <em>infrastructure</em> to fill it</h3>
-        <p class="gap-text">Chicago has no dedicated creative manufacturing studio bridging institutional access and independent production. The resources exist inside schools and corporations — nowhere in between.</p>
+        <p class="gap-text">Chicago has no dedicated creative manufacturing studio bridging institutional access and independent production. The resources exist inside schools and corporations ‚Äî nowhere in between.</p>
       </div>
     </div>
   </div>
@@ -3209,8 +3784,23 @@ footer {
       <p>Introducing</p>
       <span class="l"></span>
     </div>
-    <h2>A place where an idea doesn't just <em>live in someone's head</em> — but actually gets made.</h2>
+    <h2>A place where an idea doesn't just <em>live in someone's head</em> ‚Äî but actually gets made.</h2>
     <p class="intro-tag">Chicago has no shortage of creative talent. What it's missing is a dedicated space where that talent can actually make things.</p>
+  </div>
+</section>
+
+<!-- The people this is for -->
+<section class="photo-band reveal" aria-label="Community photography">
+  <div class="photo-band-inner">
+    <figure class="photo-frame full">
+      <img src="assets/photo-community.jpg" alt="Group of makers talking around workbenches in a shared shop" loading="lazy" style="object-position: 50% 65%">
+      <span class="photo-corner">PL. 04</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">No shortage of talent.</span>
+        <span class="cap-meta">Makers across disciplines ‚Äî the community phase one serves</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -3220,7 +3810,7 @@ footer {
 <!-- MODEL -->
 <section class="model reveal" id="model">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 03 — How it works</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 03 ‚Äî How it works</div>
     <h2 class="section-headline">The <em>two-layer</em> model.</h2>
 
     <div class="model-grid">
@@ -3228,16 +3818,34 @@ footer {
         <div class="model-layer">
           <span class="num">01</span> Layer One
         </div>
+        <figure class="photo-frame">
+          <img src="assets/photo-fashion-fitting.jpg" alt="Designers reviewing garments on dress forms with a group in a fitting studio" loading="lazy" style="object-position: 50% 40%">
+          <span class="photo-corner">PL. 05</span>
+          <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+          <figcaption class="photo-caption">
+            <span class="cap-title">Idea in.</span>
+            <span class="cap-meta">Fitting studio ¬∑ concept to garment</span>
+          </figcaption>
+        </figure>
         <h3 class="model-title">Bring your <em>idea.</em></h3>
-        <p class="model-text">Have a concept but don't know the machines? Work directly with our in-house artisans and skilled makers to bring your idea to life — from prototype to finished product.</p>
+        <p class="model-text">Have a concept but don't know the machines? Work directly with our in-house artisans and skilled makers to bring your idea to life ‚Äî from prototype to finished product.</p>
         <div class="model-perfect">For entrepreneurs, students, designers, and community members with a vision.</div>
       </div>
       <div class="model-card">
         <div class="model-layer">
           <span class="num">02</span> Layer Two
         </div>
+        <figure class="photo-frame">
+          <img src="assets/photo-cnc.jpg" alt="Operator working at an industrial CNC machining center" loading="lazy">
+          <span class="photo-corner">PL. 06</span>
+          <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+          <figcaption class="photo-caption">
+            <span class="cap-title">Time on the tools.</span>
+            <span class="cap-meta">CNC bay ¬∑ production-grade</span>
+          </figcaption>
+        </figure>
         <h3 class="model-title">Rent the <em>machines.</em></h3>
-        <p class="model-text">Already know how to create? Book time on professional equipment — large-format printers, laser cutters, CNC machines, water jets — at accessible rates.</p>
+        <p class="model-text">Already know how to create? Book time on professional equipment ‚Äî large-format printers, laser cutters, CNC machines, water jets ‚Äî at accessible rates.</p>
         <div class="model-perfect">For trained creatives, freelancers, small businesses, and artists ready to produce at scale.</div>
       </div>
     </div>
@@ -3247,46 +3855,287 @@ footer {
 <!-- EQUIPMENT -->
 <section class="equipment reveal" id="equipment">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 04 — Inside the studio</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 04 ‚Äî Inside the studio</div>
     <h2 class="section-headline">Production-grade <em>equipment,</em> accessible rates.</h2>
 
     <div class="equipment-hint">
-      <span class="star">✦</span>
+      <span class="star">‚ú¶</span>
       <span>Click any machine to see what you can build with it</span>
-      <span class="arrow">→</span>
+      <span class="arrow">‚Üí</span>
     </div>
 
     <div class="equipment-grid">
-      <button class="equipment-item" data-eq="0"><div class="equipment-num">01</div><div class="equipment-name">Large-Format Printers</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="1"><div class="equipment-num">02</div><div class="equipment-name">Laser Cutters</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="2"><div class="equipment-num">03</div><div class="equipment-name">CNC Machines</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="3"><div class="equipment-num">04</div><div class="equipment-name">Water Jets</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="4"><div class="equipment-num">05</div><div class="equipment-name">Vinyl Cutters</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="5"><div class="equipment-num">06</div><div class="equipment-name">Heat Press &amp; Sublimation</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="6"><div class="equipment-num">07</div><div class="equipment-name">Digital Embroidery</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="7"><div class="equipment-num">08</div><div class="equipment-name">3D Printers</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="8"><div class="equipment-num">09</div><div class="equipment-name">Industrial Sewing Machines</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="9"><div class="equipment-num">10</div><div class="equipment-name">Sergers &amp; Coverstitch</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="10"><div class="equipment-num">11</div><div class="equipment-name">Pattern Cutting Tables</div><div class="equipment-cta">View →</div></button>
-      <button class="equipment-item" data-eq="11"><div class="equipment-num">12</div><div class="equipment-name">Dress Forms &amp; Fitting</div><div class="equipment-cta">View →</div></button>
+      <button class="equipment-item" data-eq="0"><div class="equipment-num">01</div><div class="equipment-name">Large-Format Printers</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="1"><div class="equipment-num">02</div><div class="equipment-name">Laser Cutters</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="2"><div class="equipment-num">03</div><div class="equipment-name">CNC Machines</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="3"><div class="equipment-num">04</div><div class="equipment-name">Water Jets</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="4"><div class="equipment-num">05</div><div class="equipment-name">Vinyl Cutters</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="5"><div class="equipment-num">06</div><div class="equipment-name">Heat Press &amp; Sublimation</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="6"><div class="equipment-num">07</div><div class="equipment-name">Digital Embroidery</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="7"><div class="equipment-num">08</div><div class="equipment-name">3D Printers</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="8"><div class="equipment-num">09</div><div class="equipment-name">Industrial Sewing Machines</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="9"><div class="equipment-num">10</div><div class="equipment-name">Sergers &amp; Coverstitch</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="10"><div class="equipment-num">11</div><div class="equipment-name">Pattern Cutting Tables</div><div class="equipment-cta">View ‚Üí</div></button>
+      <button class="equipment-item" data-eq="11"><div class="equipment-num">12</div><div class="equipment-name">Dress Forms &amp; Fitting</div><div class="equipment-cta">View ‚Üí</div></button>
     </div>
+
+    <!-- Phase 01 floor plan ‚Äî how 3,000 sq ft gets used -->
+    <div class="floorplan-block" id="floorplan">
+      <div class="floorplan-head">
+        <h3 class="floorplan-title">How <em>3,000 square feet</em> becomes a studio.</h3>
+        <div class="floorplan-kicker">‚ú¶ Phase 01 ¬∑ Space Plan</div>
+      </div>
+
+      <svg class="floorplan-svg" viewBox="0 0 750 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Phase one floor plan: fabrication bay 800 sq ft, textile studio 600 sq ft, print and press lab 550 sq ft, flex workshop 400 sq ft, intake and gallery 300 sq ft, storage 250 sq ft, circulation 100 sq ft">
+        <!-- zones -->
+        <rect x="1" y="1" width="359" height="219" fill="rgba(0,63,135,0.14)"/>
+        <rect x="360" y="1" width="280" height="219" fill="rgba(0,63,135,0.09)"/>
+        <rect x="640" y="1" width="109" height="219" fill="rgba(10,22,40,0.06)"/>
+        <rect x="1" y="220" width="299" height="179" fill="rgba(0,63,135,0.11)"/>
+        <rect x="300" y="220" width="220" height="179" fill="rgba(200,16,46,0.07)"/>
+        <rect x="520" y="220" width="170" height="179" fill="rgba(0,63,135,0.05)"/>
+        <rect x="690" y="220" width="59" height="179" fill="rgba(10,22,40,0.03)"/>
+        <!-- walls -->
+        <rect x="1" y="1" width="748" height="398" fill="none" stroke="#0a1628" stroke-width="2.5"/>
+        <line x1="1" y1="220" x2="749" y2="220" stroke="#0a1628" stroke-width="1.5"/>
+        <line x1="360" y1="1" x2="360" y2="220" stroke="#0a1628" stroke-width="1.5"/>
+        <line x1="640" y1="1" x2="640" y2="220" stroke="#0a1628" stroke-width="1.5"/>
+        <line x1="300" y1="220" x2="300" y2="399" stroke="#0a1628" stroke-width="1.5"/>
+        <line x1="520" y1="220" x2="520" y2="399" stroke="#0a1628" stroke-width="1.5"/>
+        <line x1="690" y1="220" x2="690" y2="399" stroke="#0a1628" stroke-width="1.5"/>
+        <!-- door gaps -->
+        <line x1="120" y1="220" x2="170" y2="220" stroke="#ffffff" stroke-width="3"/>
+        <line x1="420" y1="220" x2="470" y2="220" stroke="#ffffff" stroke-width="3"/>
+        <line x1="580" y1="220" x2="620" y2="220" stroke="#ffffff" stroke-width="3"/>
+        <line x1="690" y1="290" x2="690" y2="330" stroke="#ffffff" stroke-width="3"/>
+        <line x1="640" y1="90" x2="640" y2="130" stroke="#ffffff" stroke-width="3"/>
+        <!-- entry -->
+        <line x1="710" y1="399" x2="740" y2="399" stroke="#C8102E" stroke-width="4"/>
+        <text x="725" y="388" fill="#C8102E" font-family="monospace" font-size="9" letter-spacing="1" text-anchor="middle">ENTRY</text>
+        <!-- labels -->
+        <text x="20" y="34" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">A</text>
+        <text x="20" y="56" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">FABRICATION BAY</text>
+        <text x="20" y="80" fill="#003F87" font-family="serif" font-style="italic" font-size="24">800 sq ft</text>
+        <text x="20" y="100" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">CNC ¬∑ LASER ¬∑ WATER JET</text>
+
+        <text x="378" y="34" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">B</text>
+        <text x="378" y="56" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">TEXTILE STUDIO</text>
+        <text x="378" y="80" fill="#003F87" font-family="serif" font-style="italic" font-size="24">600 sq ft</text>
+        <text x="378" y="100" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">SEWING ¬∑ SERGERS ¬∑ EMBROIDERY</text>
+
+        <text x="656" y="34" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">C</text>
+        <text x="656" y="56" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">STORAGE</text>
+        <text x="656" y="80" fill="#003F87" font-family="serif" font-style="italic" font-size="24">250</text>
+        <text x="656" y="100" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">MATERIALS</text>
+
+        <text x="20" y="252" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">D</text>
+        <text x="20" y="274" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">PRINT &amp; PRESS LAB</text>
+        <text x="20" y="298" fill="#003F87" font-family="serif" font-style="italic" font-size="24">550 sq ft</text>
+        <text x="20" y="318" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">LARGE-FORMAT ¬∑ HEAT PRESS ¬∑ VINYL</text>
+
+        <text x="318" y="252" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">E</text>
+        <text x="318" y="274" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">FLEX WORKSHOP</text>
+        <text x="318" y="298" fill="#003F87" font-family="serif" font-style="italic" font-size="24">400 sq ft</text>
+        <text x="318" y="318" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">CLASSES ¬∑ PATTERN TABLES</text>
+
+        <text x="538" y="252" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2">F</text>
+        <text x="538" y="274" fill="#0a1628" font-family="monospace" font-size="11" letter-spacing="2">INTAKE + GALLERY</text>
+        <text x="538" y="298" fill="#003F87" font-family="serif" font-style="italic" font-size="24">300</text>
+        <text x="538" y="318" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1">CONSULT ¬∑ SHOWCASE</text>
+
+        <text x="720" y="252" fill="#C8102E" font-family="monospace" font-size="10" letter-spacing="2" text-anchor="middle">G</text>
+        <text x="720" y="300" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="1" text-anchor="middle" transform="rotate(-90 720 300)">CIRCULATION ¬∑ 100</text>
+        <!-- scale note -->
+        <text x="20" y="388" fill="#5a6a85" font-family="monospace" font-size="9" letter-spacing="2">3,000 SQ FT ¬∑ PHASE 01</text>
+      </svg>
+
+      <div class="floorplan-legend">
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(0,63,135,0.35)"></span><span class="zone">A ¬∑ Fabrication Bay</span></div>
+          <div class="sqft">800 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">CNC machines, laser cutters, water jet ‚Äî the heavy equipment core, ventilated and sound-isolated.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(0,63,135,0.22)"></span><span class="zone">B ¬∑ Textile Studio</span></div>
+          <div class="sqft">600 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Industrial sewing, sergers, embroidery, dress forms ‚Äî the apparel production line.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(0,63,135,0.28)"></span><span class="zone">D ¬∑ Print &amp; Press Lab</span></div>
+          <div class="sqft">550 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Large-format printing, heat press and sublimation, vinyl cutting ‚Äî highest booking turnover.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(200,16,46,0.18)"></span><span class="zone">E ¬∑ Flex Workshop</span></div>
+          <div class="sqft">400 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Pattern cutting tables by day, paid workshops and classes by night ‚Äî the revenue multiplier.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(0,63,135,0.12)"></span><span class="zone">F ¬∑ Intake + Gallery</span></div>
+          <div class="sqft">300 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Layer One consultations, member showcase wall, front of house ‚Äî first thing a visitor sees.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(10,22,40,0.12)"></span><span class="zone">C ¬∑ Storage</span></div>
+          <div class="sqft">250 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Material stock, member lockers, work-in-progress shelving.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: rgba(10,22,40,0.06)"></span><span class="zone">G ¬∑ Circulation</span></div>
+          <div class="sqft">100 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Entry corridor and ADA-compliant access path.</div>
+        </div>
+        <div class="floorplan-legend-item">
+          <div class="chip-row"><span class="chip" style="background: var(--blue)"></span><span class="zone">Total ¬∑ Phase 01</span></div>
+          <div class="sqft">3,000 <span style="font-size:12px">sq ft</span></div>
+          <div class="what">Every equipment category from the grid above fits in phase one ‚Äî production capacity from day one.</div>
+        </div>
+      </div>
+
+      <div class="floorplan-note"><span class="s">‚ú¶</span> Zone allocation is indicative ‚Äî refined with an architect at property selection.</div>
+    </div>
+
+    <!-- Phase 01 budget ‚Äî what the space and machines above actually cost -->
+    <div class="budget-block" id="budget">
+      <div class="budget-head">
+        <div>
+          <div class="budget-total-label">‚ú¶ Phase 01 ¬∑ The Numbers</div>
+          <div class="budget-total">$250K <em>‚Äî</em> $750K</div>
+        </div>
+        <div class="budget-total-label">Where the money goes ‚Üì</div>
+      </div>
+
+      <!-- How to read ‚Äî orient the reader BEFORE the bars -->
+      <div class="budget-howto">
+        <span class="ht-label">‚ú¶ How to read</span>
+        <span class="ht-item"><span class="swatch solid"></span><strong>Solid</strong>&nbsp;= lean budget ¬∑ $250K opens the doors</span>
+        <span class="ht-item"><span class="swatch tint"></span><strong>Tint</strong>&nbsp;= added at full build ¬∑ $750K flagship</span>
+        <span class="ht-item">One row per line item ‚Äî longer bar, bigger spend</span>
+      </div>
+
+      <div class="budget-cats">
+
+        <div class="budget-cat">
+          <div class="bc-head">
+            <span class="bc-name"><span class="k s-equipment"></span>Equipment acquisition</span>
+            <span class="bc-amt"><strong>$75K</strong> lean ‚Üí <strong>$250K</strong> full build</span>
+          </div>
+          <div class="bc-track">
+            <span class="bc-lean s-equipment" style="width: 30%"></span>
+            <span class="bc-add s-equipment" style="width: 70%"></span>
+          </div>
+          <p class="bc-desc">The twelve machine categories in the grid above ‚Äî printers, lasers, CNC, water jet, and the full textile line. Refurbished units and brand partnerships at lean; factory-new at full build.</p>
+        </div>
+
+        <div class="budget-cat">
+          <div class="bc-head">
+            <span class="bc-name"><span class="k s-facility"></span>Facility build-out &amp; renovation</span>
+            <span class="bc-amt"><strong>$80K</strong> lean ‚Üí <strong>$200K</strong> full build</span>
+          </div>
+          <div class="bc-track">
+            <span class="bc-lean s-facility" style="width: 32%"></span>
+            <span class="bc-add s-facility" style="width: 48%"></span>
+          </div>
+          <p class="bc-desc">Turning 3,000 sq ft of raw space into the floor plan above: electrical service upgrades, sound isolation for the fabrication bay, and ADA-compliant access.</p>
+          <div class="bc-flag"><span class="s">‚ú¶</span><span>The single largest line inside this number is <strong>industrial ventilation and air filtration</strong> ‚Äî laser cutters, CNC machines, and heat presses cannot run safely or legally without dedicated air handling. Budgeting it properly up front is what separates a production studio from a hobby space.</span></div>
+        </div>
+
+        <div class="budget-cat">
+          <div class="bc-head">
+            <span class="bc-name"><span class="k s-ops"></span>Operations &amp; staffing ¬∑ Year 1</span>
+            <span class="bc-amt"><strong>$60K</strong> lean ‚Üí <strong>$150K</strong> full build</span>
+          </div>
+          <div class="bc-track">
+            <span class="bc-lean s-ops" style="width: 24%"></span>
+            <span class="bc-add s-ops" style="width: 36%"></span>
+          </div>
+          <p class="bc-desc">First-year rent, insurance, utilities, and the in-house artisans who run Layer One ‚Äî the people who turn a member's idea into a finished product.</p>
+        </div>
+
+        <div class="budget-cat">
+          <div class="bc-head">
+            <span class="bc-name"><span class="k s-reserve"></span>Reserve &amp; contingency</span>
+            <span class="bc-amt"><strong>$15K</strong> lean ‚Üí <strong>$100K</strong> full build</span>
+          </div>
+          <div class="bc-track">
+            <span class="bc-lean s-reserve" style="width: 6%"></span>
+            <span class="bc-add s-reserve" style="width: 34%"></span>
+          </div>
+          <p class="bc-desc">Machine repair, material price swings, and runway insurance ‚Äî so one broken spindle never stops the floor.</p>
+        </div>
+
+        <div class="budget-cat">
+          <div class="bc-head">
+            <span class="bc-name"><span class="k s-marketing"></span>Marketing &amp; community launch</span>
+            <span class="bc-amt"><strong>$20K</strong> lean ‚Üí <strong>$50K</strong> full build</span>
+          </div>
+          <div class="bc-track">
+            <span class="bc-lean s-marketing" style="width: 8%"></span>
+            <span class="bc-add s-marketing" style="width: 12%"></span>
+          </div>
+          <p class="bc-desc">The opening membership drive, first free workshops, and getting Project 808 in front of the students about to graduate into the gap.</p>
+        </div>
+
+      </div>
+
+      <div class="budget-scale">
+        <span>$0</span><span>$62.5K</span><span>$125K</span><span>$187.5K</span><span>$250K</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo band ‚Äî the equipment in use -->
+<section class="photo-band reveal" aria-label="Equipment photography">
+  <div class="photo-band-inner">
+
+    <figure class="photo-frame full">
+      <img src="assets/photo-machine-row.jpg" alt="Row of production machines in a bright, high-ceilinged loft shop" loading="lazy" style="object-position: 50% 62%">
+      <span class="photo-corner">PL. 07</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Production-grade, rows of it.</span>
+        <span class="cap-meta">Machine floor ¬∑ the scale phase one builds toward</span>
+      </figcaption>
+    </figure>
+
+    <figure class="photo-frame">
+      <img src="assets/photo-letterpress.jpg" alt="Two makers' hands setting type on a letterpress bed" loading="lazy">
+      <span class="photo-corner">PL. 08</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Ink on metal.</span>
+        <span class="cap-meta">Print &amp; press lab</span>
+      </figcaption>
+    </figure>
+
+    <figure class="photo-frame">
+      <img src="assets/photo-sewing.jpg" alt="Maker leaning into a Brother industrial sewing machine in a textile studio" loading="lazy">
+      <span class="photo-corner">PL. 09</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">The textile line.</span>
+        <span class="cap-meta">Industrial sewing ¬∑ apparel production</span>
+      </figcaption>
+    </figure>
+
   </div>
 </section>
 
 <!-- TOOL PARTNERSHIPS -->
 <section class="partnerships reveal" id="partnerships">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 05 — Tool Partnerships</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 05 ‚Äî Tool Partnerships</div>
 
     <div class="partnerships-intro">
       <h2 class="section-headline" style="margin-bottom: 0;">Built through <em>industry partnerships,</em> not retail markups.</h2>
-      <p class="lead">A $50,000 studio buildout is unrealistic for any new graduate — and unnecessary. Project 808's funding model is built around partnerships with the manufacturers behind these tools: equipment donations, co-branded studio installations, and material sponsorships in exchange for visibility, training programs, and brand activation inside Chicago's creative community. These are the relationships we plan to build as Phase 01 funding comes together.</p>
+      <p class="lead">A $50,000 studio buildout is unrealistic for any new graduate ‚Äî and unnecessary. Project 808's funding model is built around partnerships with the manufacturers behind these tools: equipment donations, co-branded studio installations, and material sponsorships in exchange for visibility, training programs, and brand activation inside Chicago's creative community. These are the relationships we plan to build as Phase 01 funding comes together.</p>
     </div>
 
     <!-- Tiered partnership offer -->
     <div class="partner-tiers">
       <div class="partner-tier">
-        <div class="partner-tier-eyebrow"><span class="s">✦</span> Tier 01</div>
+        <div class="partner-tier-eyebrow"><span class="s">‚ú¶</span> Tier 01</div>
         <h3 class="partner-tier-title">Equipment <em>donation.</em></h3>
         <p class="partner-tier-desc">Brands could donate machines in exchange for permanent on-floor placement, signage, and inclusion in every workshop, photoshoot, and press feature for the lifetime of the equipment.</p>
         <ul class="partner-tier-list">
@@ -3298,7 +4147,7 @@ footer {
       </div>
 
       <div class="partner-tier featured">
-        <div class="partner-tier-eyebrow"><span class="s">✦</span> Tier 02 · Flagship</div>
+        <div class="partner-tier-eyebrow"><span class="s">‚ú¶</span> Tier 02 ¬∑ Flagship</div>
         <h3 class="partner-tier-title">Co-branded <em>studio bay.</em></h3>
         <p class="partner-tier-desc">A flagship sponsorship: a brand outfits an entire studio bay with their full equipment line. The bay would carry their name, host their certified training programs, and serve as a Midwest demonstration space.</p>
         <ul class="partner-tier-list">
@@ -3310,9 +4159,9 @@ footer {
       </div>
 
       <div class="partner-tier">
-        <div class="partner-tier-eyebrow"><span class="s">✦</span> Tier 03</div>
+        <div class="partner-tier-eyebrow"><span class="s">‚ú¶</span> Tier 03</div>
         <h3 class="partner-tier-title">Material &amp; <em>supply sponsorship.</em></h3>
-        <p class="partner-tier-desc">Material brands could provide consumables — fabric, ink, filament, vinyl, thread, blanks — at sponsored rates or as in-kind donations, keeping member project costs accessible.</p>
+        <p class="partner-tier-desc">Material brands could provide consumables ‚Äî fabric, ink, filament, vinyl, thread, blanks ‚Äî at sponsored rates or as in-kind donations, keeping member project costs accessible.</p>
         <ul class="partner-tier-list">
           <li>Material-branded supply station</li>
           <li>Member-discount pricing</li>
@@ -3324,7 +4173,7 @@ footer {
 
     <!-- Target brands -->
     <div class="partner-brands">
-      <div class="partner-brands-label"><span class="s">✦</span> Brands we're hoping to build with</div>
+      <div class="partner-brands-label"><span class="s">‚ú¶</span> Brands we're hoping to build with</div>
       <div class="partner-brands-grid">
         <div class="partner-brand">
           <div class="partner-brand-cat">Sewing &amp; Fashion</div>
@@ -3391,8 +4240,8 @@ footer {
 
     <!-- CTA -->
     <div class="partnerships-cta">
-      <div class="partnerships-cta-text">Represent a brand on this list — or one that should be? When the time is right, we'd <em>love to start the conversation.</em></div>
-      <a href="#partner" class="partnerships-cta-button"><span>Introduce yourself →</span></a>
+      <div class="partnerships-cta-text">Represent a brand on this list ‚Äî or one that should be? When the time is right, we'd <em>love to start the conversation.</em></div>
+      <a href="#partner" class="partnerships-cta-button"><span>Introduce yourself ‚Üí</span></a>
     </div>
   </div>
 </section>
@@ -3400,11 +4249,11 @@ footer {
 <!-- COMPARISON -->
 <section class="comparison reveal" id="comparison">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 06 — Comparable Cities</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 06 ‚Äî Comparable Cities</div>
 
     <div class="comparison-intro">
       <h2 class="section-headline" style="margin-bottom: 0;">Other cities <em>already built</em> what Chicago hasn't.</h2>
-      <p class="lead">New York and Los Angeles have spent the last decade investing in publicly accessible creative manufacturing infrastructure — funded by city economic development agencies and public library systems, integrated with workforce development, and explicitly designed to retain the creative talent those cities train. Chicago has world-class creative schools and zero public infrastructure to receive their graduates.</p>
+      <p class="lead">New York and Los Angeles have spent the last decade investing in publicly accessible creative manufacturing infrastructure ‚Äî funded by city economic development agencies and public library systems, integrated with workforce development, and explicitly designed to retain the creative talent those cities train. Chicago has world-class creative schools and zero public infrastructure to receive their graduates.</p>
     </div>
 
     <div class="comparison-table">
@@ -3416,15 +4265,15 @@ footer {
         </div>
         <div class="cell cell-stack">
           <span class="city">New York</span>
-          <span class="city-meta">Funded by NYCEDC · 11 fabrication studios citywide</span>
+          <span class="city-meta">Funded by NYCEDC ¬∑ 11 fabrication studios citywide</span>
         </div>
         <div class="cell cell-stack">
           <span class="city">Los Angeles</span>
-          <span class="city-meta">Public library system · Free for cardholders</span>
+          <span class="city-meta">Public library system ¬∑ Free for cardholders</span>
         </div>
         <div class="cell cell-stack">
           <span class="city">Chicago</span>
-          <span class="city-meta">— No equivalent facility —</span>
+          <span class="city-meta">‚Äî No equivalent facility ‚Äî</span>
         </div>
       </div>
 
@@ -3434,20 +4283,20 @@ footer {
         <div class="cell">
           <div>
             <span class="facility-name">Futureworks Makerspace</span>
-            <span class="facility-meta">15,000 sq ft · Brooklyn Army Terminal</span>
-            <span class="facility-meta">Opened 2019 · NYC partnership</span>
+            <span class="facility-meta">15,000 sq ft ¬∑ Brooklyn Army Terminal</span>
+            <span class="facility-meta">Opened 2019 ¬∑ NYC partnership</span>
           </div>
         </div>
         <div class="cell">
           <div>
             <span class="facility-name">Octavia Lab</span>
             <span class="facility-meta">Inside LA Public Library Central</span>
-            <span class="facility-meta">Free with library card · Downtown LA</span>
+            <span class="facility-meta">Free with library card ¬∑ Downtown LA</span>
           </div>
         </div>
         <div class="cell">
           <div>
-            <span class="empty-state">— None —</span>
+            <span class="empty-state">‚Äî None ‚Äî</span>
             <span class="empty-state-meta">No publicly funded creative manufacturing studio exists in the city.</span>
           </div>
         </div>
@@ -3466,13 +4315,13 @@ footer {
         <div class="cell">
           <div>
             <span class="facility-name">Maker City LA</span>
-            <span class="facility-meta">60,000 sq ft · Downtown LA</span>
+            <span class="facility-meta">60,000 sq ft ¬∑ Downtown LA</span>
             <span class="facility-meta">Apparel + entertainment industry focus</span>
           </div>
         </div>
         <div class="cell">
           <div>
-            <span class="empty-state">— None —</span>
+            <span class="empty-state">‚Äî None ‚Äî</span>
             <span class="empty-state-meta">Resources exist inside schools and corporate offices, with no public bridge.</span>
           </div>
         </div>
@@ -3484,20 +4333,20 @@ footer {
         <div class="cell">
           <div>
             <span class="facility-name">Garment District + FMI Grants</span>
-            <span class="facility-meta">Fashion Manufacturing Initiative · Matching grant fund</span>
-            <span class="facility-meta">CFDA Production Directory · 6,500+ businesses</span>
+            <span class="facility-meta">Fashion Manufacturing Initiative ¬∑ Matching grant fund</span>
+            <span class="facility-meta">CFDA Production Directory ¬∑ 6,500+ businesses</span>
           </div>
         </div>
         <div class="cell">
           <div>
             <span class="facility-name">Renaissance Creative Studio</span>
-            <span class="facility-meta">DTLA · Pattern, sample, small-batch production</span>
+            <span class="facility-meta">DTLA ¬∑ Pattern, sample, small-batch production</span>
             <span class="facility-meta">Octavia Lab: sewing, sergers, embroidery, heat press</span>
           </div>
         </div>
         <div class="cell">
           <div>
-            <span class="empty-state">— None —</span>
+            <span class="empty-state">‚Äî None ‚Äî</span>
             <span class="empty-state-meta">Chicago designers send work to LA, NYC, or overseas to access these tools.</span>
           </div>
         </div>
@@ -3520,8 +4369,8 @@ footer {
         </div>
         <div class="cell">
           <div>
-            <span class="empty-state">— Caught flat-footed —</span>
-            <span class="empty-state-meta">With tariffs on Chinese apparel at 41–61%, Chicago designers can no longer afford overseas production but have no domestic alternative in their own city.</span>
+            <span class="empty-state">‚Äî Caught flat-footed ‚Äî</span>
+            <span class="empty-state-meta">With tariffs on Chinese apparel at 41‚Äì61%, Chicago designers can no longer afford overseas production but have no domestic alternative in their own city.</span>
           </div>
         </div>
       </div>
@@ -3545,8 +4394,8 @@ footer {
         </div>
         <div class="cell">
           <div>
-            <span class="partial-state">— Hobbyist scale only —</span>
-            <span class="partial-state-meta">Chicago Public Library has small consumer-grade equipment (Cricut machines, desktop 3D printers, hobby sewing) — useful for personal projects, but not built for the production volume, materials, or finish quality professional creatives need to run a business.</span>
+            <span class="partial-state">‚Äî Hobbyist scale only ‚Äî</span>
+            <span class="partial-state-meta">Chicago Public Library has small consumer-grade equipment (Cricut machines, desktop 3D printers, hobby sewing) ‚Äî useful for personal projects, but not built for the production volume, materials, or finish quality professional creatives need to run a business.</span>
           </div>
         </div>
       </div>
@@ -3577,20 +4426,20 @@ footer {
 
     <!-- Mobile-only stacked comparison cards -->
     <div class="comparison-mobile">
-      <div class="comparison-mobile-intro"><span class="s">✦</span> Side-by-side · Scroll to compare</div>
+      <div class="comparison-mobile-intro"><span class="s">‚ú¶</span> Side-by-side ¬∑ Scroll to compare</div>
 
       <!-- Card 01 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">01 · Flagship Facility</span>
+          <span class="comparison-mobile-card-label">01 ¬∑ Flagship Facility</span>
           <span class="comparison-mobile-card-category">Where designers go to make.</span>
         </div>
         <div class="comparison-mobile-row">
           <div class="comparison-mobile-city">New York</div>
           <div class="comparison-mobile-content">
             <strong>Futureworks Makerspace</strong>
-            15,000 sq ft · Brooklyn Army Terminal
-            <span class="meta">Opened 2019 · NYC partnership</span>
+            15,000 sq ft ¬∑ Brooklyn Army Terminal
+            <span class="meta">Opened 2019 ¬∑ NYC partnership</span>
           </div>
         </div>
         <div class="comparison-mobile-row">
@@ -3598,13 +4447,13 @@ footer {
           <div class="comparison-mobile-content">
             <strong>Octavia Lab</strong>
             Inside LA Public Library Central
-            <span class="meta">Free with library card · Downtown LA</span>
+            <span class="meta">Free with library card ¬∑ Downtown LA</span>
           </div>
         </div>
         <div class="comparison-mobile-row chicago">
           <div class="comparison-mobile-city">Chicago</div>
           <div class="comparison-mobile-content">
-            <span class="empty">— None —</span>
+            <span class="empty">‚Äî None ‚Äî</span>
             <span class="meta">No publicly funded creative manufacturing studio exists in the city.</span>
           </div>
         </div>
@@ -3613,7 +4462,7 @@ footer {
       <!-- Card 02 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">02 · Citywide Network</span>
+          <span class="comparison-mobile-card-label">02 ¬∑ Citywide Network</span>
           <span class="comparison-mobile-card-category">How wide the access reaches.</span>
         </div>
         <div class="comparison-mobile-row">
@@ -3628,14 +4477,14 @@ footer {
           <div class="comparison-mobile-city">Los Angeles</div>
           <div class="comparison-mobile-content">
             <strong>Maker City LA</strong>
-            60,000 sq ft · Downtown LA
+            60,000 sq ft ¬∑ Downtown LA
             <span class="meta">Apparel + entertainment industry focus</span>
           </div>
         </div>
         <div class="comparison-mobile-row chicago">
           <div class="comparison-mobile-city">Chicago</div>
           <div class="comparison-mobile-content">
-            <span class="empty">— None —</span>
+            <span class="empty">‚Äî None ‚Äî</span>
             <span class="meta">Resources exist inside schools and corporate offices, with no public bridge.</span>
           </div>
         </div>
@@ -3644,29 +4493,29 @@ footer {
       <!-- Card 03 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">03 · Fashion Infrastructure</span>
+          <span class="comparison-mobile-card-label">03 ¬∑ Fashion Infrastructure</span>
           <span class="comparison-mobile-card-category">Industry-grade support for designers.</span>
         </div>
         <div class="comparison-mobile-row">
           <div class="comparison-mobile-city">New York</div>
           <div class="comparison-mobile-content">
             <strong>Garment District + FMI Grants</strong>
-            Fashion Manufacturing Initiative · matching grant fund
-            <span class="meta">CFDA Production Directory · 6,500+ businesses</span>
+            Fashion Manufacturing Initiative ¬∑ matching grant fund
+            <span class="meta">CFDA Production Directory ¬∑ 6,500+ businesses</span>
           </div>
         </div>
         <div class="comparison-mobile-row">
           <div class="comparison-mobile-city">Los Angeles</div>
           <div class="comparison-mobile-content">
             <strong>Renaissance Creative Studio</strong>
-            DTLA · Pattern, sample, small-batch production
+            DTLA ¬∑ Pattern, sample, small-batch production
             <span class="meta">Octavia Lab: sewing, sergers, embroidery, heat press</span>
           </div>
         </div>
         <div class="comparison-mobile-row chicago">
           <div class="comparison-mobile-city">Chicago</div>
           <div class="comparison-mobile-content">
-            <span class="empty">— None —</span>
+            <span class="empty">‚Äî None ‚Äî</span>
             <span class="meta">Chicago designers send work to LA, NYC, or overseas to access these tools.</span>
           </div>
         </div>
@@ -3675,7 +4524,7 @@ footer {
       <!-- Card 04 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">04 · Tariff-era Readiness</span>
+          <span class="comparison-mobile-card-label">04 ¬∑ Tariff-era Readiness</span>
           <span class="comparison-mobile-card-category">Built for the moment we're in.</span>
         </div>
         <div class="comparison-mobile-row">
@@ -3695,8 +4544,8 @@ footer {
         <div class="comparison-mobile-row chicago">
           <div class="comparison-mobile-city">Chicago</div>
           <div class="comparison-mobile-content">
-            <span class="empty">— Caught flat-footed —</span>
-            <span class="meta">With tariffs on Chinese apparel at 41–61%, Chicago designers can no longer afford overseas production but have no domestic alternative in their own city.</span>
+            <span class="empty">‚Äî Caught flat-footed ‚Äî</span>
+            <span class="meta">With tariffs on Chinese apparel at 41‚Äì61%, Chicago designers can no longer afford overseas production but have no domestic alternative in their own city.</span>
           </div>
         </div>
       </div>
@@ -3704,14 +4553,14 @@ footer {
       <!-- Card 05 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">05 · Public Equipment Access</span>
+          <span class="comparison-mobile-card-label">05 ¬∑ Public Equipment Access</span>
           <span class="comparison-mobile-card-category">Production-grade tools for the public.</span>
         </div>
         <div class="comparison-mobile-row">
           <div class="comparison-mobile-city">New York</div>
           <div class="comparison-mobile-content">
             <strong>Yes</strong>
-            CNC, laser, 3D print, sewing, prototyping — membership-based at affordable rates.
+            CNC, laser, 3D print, sewing, prototyping ‚Äî membership-based at affordable rates.
           </div>
         </div>
         <div class="comparison-mobile-row">
@@ -3724,8 +4573,8 @@ footer {
         <div class="comparison-mobile-row chicago">
           <div class="comparison-mobile-city">Chicago</div>
           <div class="comparison-mobile-content">
-            <span class="partial">— Hobbyist scale only —</span>
-            <span class="meta">Chicago Public Library has small consumer-grade equipment (Cricut, desktop 3D printers, hobby sewing) — useful for personal projects, but not built for the production volume, materials, or finish quality professional creatives need.</span>
+            <span class="partial">‚Äî Hobbyist scale only ‚Äî</span>
+            <span class="meta">Chicago Public Library has small consumer-grade equipment (Cricut, desktop 3D printers, hobby sewing) ‚Äî useful for personal projects, but not built for the production volume, materials, or finish quality professional creatives need.</span>
           </div>
         </div>
       </div>
@@ -3733,7 +4582,7 @@ footer {
       <!-- Card 06 -->
       <div class="comparison-mobile-card">
         <div class="comparison-mobile-card-header">
-          <span class="comparison-mobile-card-label">06 · City Backing</span>
+          <span class="comparison-mobile-card-label">06 ¬∑ City Backing</span>
           <span class="comparison-mobile-card-category">Who's funding the infrastructure.</span>
         </div>
         <div class="comparison-mobile-row">
@@ -3762,9 +4611,36 @@ footer {
 
     <!-- Closer -->
     <div class="comparison-closer">
-      <div class="comparison-closer-text">Chicago has every reason to lead the Midwest in creative manufacturing — <em>and no reason to keep losing</em> the talent that builds it.</div>
-      <div class="comparison-closer-tag">✦ The case for Project 808</div>
+      <div class="comparison-closer-text">Chicago has every reason to lead the Midwest in creative manufacturing ‚Äî <em>and no reason to keep losing</em> the talent that builds it.</div>
+      <div class="comparison-closer-tag">‚ú¶ The case for Project 808</div>
     </div>
+  </div>
+</section>
+
+<!-- Photo band ‚Äî daily practice -->
+<section class="photo-band reveal" aria-label="Studio life photography">
+  <div class="photo-band-inner">
+
+    <figure class="photo-frame">
+      <img src="assets/photo-open-studio.jpg" alt="Artist working at a cluttered studio table in warm window light" loading="lazy">
+      <span class="photo-corner">PL. 10</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Room to work.</span>
+        <span class="cap-meta">Open studio ¬∑ daily practice</span>
+      </figcaption>
+    </figure>
+
+    <figure class="photo-frame">
+      <img src="assets/photo-vacuum-former.jpg" alt="Two makers learning to operate a vacuum former" loading="lazy" style="object-position: 65% 50%">
+      <span class="photo-corner">PL. 11</span>
+      <span class="photo-corner-right">STUDIO ¬∑ CHI</span>
+      <figcaption class="photo-caption">
+        <span class="cap-title">Learning the machines.</span>
+        <span class="cap-meta">Workshops ¬∑ first-time makers welcome</span>
+      </figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -3772,18 +4648,18 @@ footer {
 <section class="survey-banner reveal" id="survey">
   <div class="survey-banner-inner">
     <div class="survey-banner-content">
-      <div class="survey-banner-eyebrow"><span class="pulse"></span> Take the survey · 2 minutes</div>
+      <div class="survey-banner-eyebrow"><span class="pulse"></span> Take the survey ¬∑ 2 minutes</div>
       <h2 class="survey-banner-headline">Are you a Chicago creative? <em>Your voice strengthens the case.</em></h2>
-      <p class="survey-banner-text">We're collecting community input to demonstrate demand for Project 808 to city officials, investors, and decision-makers. Whether you're a current student, recent grad, freelancer, or founder — your response helps prove this infrastructure is needed. Confidential, brief, and built for builders.</p>
+      <p class="survey-banner-text">We're collecting community input to demonstrate demand for Project 808 to city officials, investors, and decision-makers. Whether you're a current student, recent grad, freelancer, or founder ‚Äî your response helps prove this infrastructure is needed. Confidential, brief, and built for builders.</p>
     </div>
-    <a href="#" class="survey-banner-cta" id="surveyBannerCTA"><span>Share your perspective →</span></a>
+    <a href="#" class="survey-banner-cta" id="surveyBannerCTA"><span>Share your perspective ‚Üí</span></a>
   </div>
 </section>
 
 <!-- IMPACT -->
 <section class="impact reveal" id="impact">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 07 — The Impact</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 07 ‚Äî The Impact</div>
     <h2 class="impact-headline">What Chicago <em>gains</em> when we build it.</h2>
 
     <div class="impact-grid">
@@ -3795,7 +4671,7 @@ footer {
         </div>
       </div>
       <div class="impact-item">
-        <div class="impact-stat">3–5<em>%</em></div>
+        <div class="impact-stat">3‚Äì5<em>%</em></div>
         <div>
           <h3 class="impact-title">Creative job growth in IL</h3>
           <p class="impact-text">Project 808 positions Chicago to capture that growth by giving creatives the infrastructure to stay, freelance, and build here.</p>
@@ -3809,7 +4685,7 @@ footer {
         </div>
       </div>
       <div class="impact-item">
-        <div class="impact-stat"><em>∞</em></div>
+        <div class="impact-stat"><em>‚àû</em></div>
         <div>
           <h3 class="impact-title">Community ripple effect</h3>
           <p class="impact-text">Local suppliers, collaborators, neighboring businesses, and institutions all benefit when a creative hub anchors a neighborhood.</p>
@@ -3820,16 +4696,16 @@ footer {
 </section>
 
 <!-- ASK -->
-<section class="ask reveal">
+<section class="ask reveal" id="ask">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 08 — The Ask</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 08 ‚Äî The Ask</div>
     <h2 class="section-headline">What we need to <em>break ground.</em></h2>
 
     <div class="ask-grid">
       <div class="ask-card">
         <span class="ask-card-num">01</span>
         <h3 class="ask-card-title">Funding</h3>
-        <p class="ask-card-text">A grant, investment, or funding pathway in the range of $250K to $750K to launch Phase 1 — covering facility, equipment, operations, and community launch.</p>
+        <p class="ask-card-text">A grant, investment, or funding pathway in the range of $250K to $750K to launch Phase 1 ‚Äî covering facility, equipment, operations, and community launch.</p>
       </div>
       <div class="ask-card">
         <span class="ask-card-num">02</span>
@@ -3839,7 +4715,7 @@ footer {
       <div class="ask-card">
         <span class="ask-card-num">03</span>
         <h3 class="ask-card-title">Institutional bridge</h3>
-        <p class="ask-card-text">Agreements with local colleges to extend student access post-graduation through Project 808 — solving the gap directly at scale.</p>
+        <p class="ask-card-text">Agreements with local colleges to extend student access post-graduation through Project 808 ‚Äî solving the gap directly at scale.</p>
       </div>
       <div class="ask-card">
         <span class="ask-card-num">04</span>
@@ -3853,14 +4729,14 @@ footer {
 <!-- FOUNDER -->
 <section class="founder reveal" id="founder">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 09 — The Founder</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 09 ‚Äî The Founder</div>
     <p class="founder-quote">I am not pitching an idea from <em>the outside.</em> I am the person this gap was built for.</p>
 
     <div class="founder-attribution">
       <div class="founder-mark">CT</div>
       <div>
         <div class="founder-name">Charlesa Thompson</div>
-        <div class="founder-role">Founder · UX/UI Designer · Creative Director</div>
+        <div class="founder-role">Founder ¬∑ UX/UI Designer ¬∑ Creative Director</div>
       </div>
     </div>
 
@@ -3871,11 +4747,11 @@ footer {
       </div>
       <div class="founder-cred">
         <strong>Award-winning spatial work</strong>
-        Creator of Where We Rest, a sculptural installation that earned the Lost Design South Side Sanctuary Award — hosted by the Chicago Architecture Center.
+        Creator of Where We Rest, a sculptural installation that earned the Lost Design South Side Sanctuary Award ‚Äî hosted by the Chicago Architecture Center.
       </div>
       <div class="founder-cred">
         <strong>Skin in the game</strong>
-        Properties scouted. Budget built. Business model structured. Project 808 is not hypothetical — it is in motion.
+        Properties scouted. Budget built. Business model structured. Project 808 is not hypothetical ‚Äî it is in motion.
       </div>
       <div class="founder-cred">
         <strong>A Chicagoan building for Chicago</strong>
@@ -3891,7 +4767,7 @@ footer {
 <!-- FORMS -->
 <section class="forms" id="partner">
   <div class="container">
-    <div class="section-label"><span class="s">✦</span> 10 — Get involved</div>
+    <div class="section-label"><span class="s">‚ú¶</span> 10 ‚Äî Get involved</div>
     <h2 class="forms-headline">Build this <em>with</em> us.</h2>
 
     <div class="forms-grid">
@@ -3899,16 +4775,16 @@ footer {
       <div>
         <div class="form-eyebrow">For everyone</div>
         <h3 class="form-title">Stay close to the work.</h3>
-        <p class="form-desc">Updates on the build, the space, and how Chicago can help us cross the finish line. No spam — just the milestones.</p>
+        <p class="form-desc">Updates on the build, the space, and how Chicago can help us cross the finish line. No spam ‚Äî just the milestones.</p>
 
         <form id="emailForm" onsubmit="handleEmail(event)">
           <div class="q-block">
             <label class="q-label">Email address</label>
             <input type="email" class="form-input" placeholder="you@email.com" required />
           </div>
-          <button type="submit" class="form-button"><span>Join the list →</span></button>
+          <button type="submit" class="form-button"><span>Join the list ‚Üí</span></button>
           <div class="form-success" id="emailSuccess">
-            <span class="stars">✦ ✦ ✦ ✦</span>You're on the list. We'll be in touch.
+            <span class="stars">‚ú¶ ‚ú¶ ‚ú¶ ‚ú¶</span>You're on the list. We'll be in touch.
           </div>
         </form>
       </div>
@@ -3917,7 +4793,7 @@ footer {
       <div>
         <div class="form-eyebrow">For partners & funders</div>
         <h3 class="form-title">Help us break ground.</h3>
-        <p class="form-desc">Funders, city representatives, institutional partners, equipment sponsors, and corporate collaborators — tell us how you'd like to be part of building this.</p>
+        <p class="form-desc">Funders, city representatives, institutional partners, equipment sponsors, and corporate collaborators ‚Äî tell us how you'd like to be part of building this.</p>
 
         <form id="partnerForm" onsubmit="handlePartner(event)">
           <div class="q-block">
@@ -3948,11 +4824,11 @@ footer {
           </div>
           <div class="q-block">
             <label class="q-label">Tell us a little more (optional)</label>
-            <textarea class="form-textarea" placeholder="Share context, scale, or timing — whatever feels relevant."></textarea>
+            <textarea class="form-textarea" placeholder="Share context, scale, or timing ‚Äî whatever feels relevant."></textarea>
           </div>
-          <button type="submit" class="form-button"><span>Send a note →</span></button>
+          <button type="submit" class="form-button"><span>Send a note ‚Üí</span></button>
           <div class="form-success" id="partnerSuccess">
-            <span class="stars">✦ ✦ ✦ ✦</span>Thank you. We'll be in touch within a week.
+            <span class="stars">‚ú¶ ‚ú¶ ‚ú¶ ‚ú¶</span>Thank you. We'll be in touch within a week.
           </div>
         </form>
       </div>
@@ -3964,7 +4840,7 @@ footer {
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-brand">Project <em>808</em><span class="star">✦</span></div>
+      <div class="footer-brand">Project <em>808</em><span class="star">‚ú¶</span></div>
       <p class="footer-tagline">Chicago has everything it needs to be the creative manufacturing capital of the Midwest. This is how we build it.</p>
     </div>
     <div class="footer-col">
@@ -3987,7 +4863,7 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <div><span class="rs">✦</span> Project 808 · Chicago, IL · 2026 <span class="rs">✦</span></div>
+    <div><span class="rs">‚ú¶</span> Project 808 ¬∑ Chicago, IL ¬∑ 2026 <span class="rs">‚ú¶</span></div>
     <div class="footer-bottom-right">
       <span>Designed by Charlesa Thompson</span>
       <span>v 01</span>
@@ -3998,20 +4874,20 @@ footer {
 <!-- EQUIPMENT MODAL -->
 <div class="eq-modal" id="eqModal" aria-hidden="true" role="dialog">
   <div class="eq-modal-card">
-    <button class="eq-modal-close" id="eqModalClose" aria-label="Close">✕</button>
+    <button class="eq-modal-close" id="eqModalClose" aria-label="Close">‚úï</button>
     <div class="eq-modal-image" id="eqModalImage">
       <img id="eqModalImg" alt="" />
       <div class="eq-modal-image-fallback" id="eqModalFallback">
         <div class="fb-num" id="eqModalFbNum">01</div>
-        <div class="fb-stars">✦ ✦ ✦</div>
+        <div class="fb-stars">‚ú¶ ‚ú¶ ‚ú¶</div>
         <div class="fb-name" id="eqModalFbName">Equipment</div>
       </div>
     </div>
     <div class="eq-modal-body">
-      <div class="eq-modal-eyebrow"><span class="s">✦</span> <span id="eqModalNum">EQUIPMENT 01</span></div>
+      <div class="eq-modal-eyebrow"><span class="s">‚ú¶</span> <span id="eqModalNum">EQUIPMENT 01</span></div>
       <h3 class="eq-modal-title" id="eqModalTitle"></h3>
       <p class="eq-modal-desc" id="eqModalDesc"></p>
-      <div class="eq-modal-section-label"><span class="s">✦</span> What you can build</div>
+      <div class="eq-modal-section-label"><span class="s">‚ú¶</span> What you can build</div>
       <ul class="eq-modal-uses" id="eqModalUses"></ul>
     </div>
   </div>
@@ -4057,7 +4933,7 @@ menuToggle.addEventListener('click', () => {
   }
 });
 
-// Close on link click — explicitly handle in-page anchor scroll
+// Close on link click ‚Äî explicitly handle in-page anchor scroll
 document.querySelectorAll('[data-menu-link]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -4080,7 +4956,7 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ───── SUPABASE CONFIG ─────
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ SUPABASE CONFIG ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 const SUPABASE_URL = 'https://binzsyirrpgvrgmxxduh.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_T7opLzzQfMfnHUgzwtAXBA_LO1k9G9e';
 
@@ -4178,8 +5054,84 @@ async function handlePartner(e) {
   }
 }
 
-// ───── EQUIPMENT MODAL ─────
-// Custom SVG illustrations — always render, always on-brand
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ PROBLEM CARD EXPANSION ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// Cards hover AND click now ‚Äî no false affordance. Click reveals the full story.
+document.querySelectorAll('.problem-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const open = card.getAttribute('aria-expanded') === 'true';
+    card.setAttribute('aria-expanded', String(!open));
+    const toggle = card.querySelector('.problem-toggle');
+    if (toggle) toggle.textContent = open ? 'More +' : 'Close ‚àí';
+  });
+});
+
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ PROBLEM STAT COUNT-UP ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// Numbers count from 0 when the grid scrolls into view. HTML ships with the
+// final values, so no-JS and reduced-motion readers always see real numbers.
+(() => {
+  const grid = document.querySelector('.problem-grid');
+  if (!grid || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const counters = grid.querySelectorAll('.problem-stat .count');
+  const obs = new IntersectionObserver((entries) => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    counters.forEach((el, i) => {
+      const target = parseInt(el.dataset.target, 10);
+      const dur = 1300;
+      const t0 = performance.now() + i * 130;
+      const step = (t) => {
+        const p = Math.min(Math.max((t - t0) / dur, 0), 1);
+        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.35 });
+  obs.observe(grid);
+})();
+
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ EQUIPMENT CARD ICONS (Task 3) ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// Small distilled versions of the modal illustrations, nested inside each card.
+// currentColor lets them inherit .equipment-icon color for hover state.
+const equipmentIcons = [
+  // 01 Large-Format Printer
+  '<rect x="6" y="18" width="32" height="14" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="4" width="16" height="14" fill="none" stroke="currentColor" stroke-width="1.6"/><line x1="16" y1="8" x2="28" y2="8" stroke="currentColor" stroke-width="1"/><line x1="16" y1="12" x2="26" y2="12" stroke="currentColor" stroke-width="1"/><rect x="10" y="32" width="24" height="8" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="32" cy="25" r="1.5" fill="currentColor"/>',
+  // 02 Laser Cutter
+  '<rect x="4" y="10" width="32" height="22" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="22" cy="18" r="2" fill="currentColor"/><line x1="22" y1="20" x2="22" y2="30" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2"/><path d="M 12 26 L 16 26 L 16 22 L 20 22 L 20 28 L 12 28 Z" fill="none" stroke="currentColor" stroke-width="1"/><rect x="4" y="34" width="32" height="4" fill="currentColor" opacity="0.4"/>',
+  // 03 CNC Machine
+  '<rect x="4" y="8" width="32" height="6" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="10" y1="14" x2="10" y2="22" stroke="currentColor" stroke-width="1.6"/><line x1="30" y1="14" x2="30" y2="22" stroke="currentColor" stroke-width="1.6"/><rect x="16" y="14" width="8" height="10" fill="currentColor"/><rect x="18" y="24" width="4" height="6" fill="currentColor" opacity="0.7"/><rect x="4" y="32" width="32" height="6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 2"/>',
+  // 04 Water Jet
+  '<rect x="14" y="4" width="12" height="10" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="14" x2="20" y2="24" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="20" r="1" fill="currentColor"/><circle cx="23" cy="18" r="1" fill="currentColor"/><circle cx="19" cy="26" r="1.2" fill="currentColor"/><circle cx="22" cy="30" r="1" fill="currentColor"/><rect x="6" y="32" width="28" height="6" fill="none" stroke="currentColor" stroke-width="1.4"/>',
+  // 05 Vinyl Cutter
+  '<rect x="4" y="14" width="32" height="12" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="20" r="2" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="32" cy="20" r="2" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="1.5" fill="currentColor"/><path d="M 12 30 L 14 34 L 16 30 L 18 34 L 20 30 L 22 34 L 24 30 L 26 34 L 28 30" fill="none" stroke="currentColor" stroke-width="1"/>',
+  // 06 Heat Press
+  '<rect x="10" y="4" width="20" height="4" fill="currentColor"/><rect x="16" y="8" width="8" height="4" fill="currentColor" opacity="0.7"/><rect x="6" y="12" width="28" height="4" fill="currentColor"/><rect x="4" y="18" width="32" height="10" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M 8 32 Q 12 28 16 32 T 24 32 T 32 32" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M 8 36 Q 12 34 16 36 T 24 36 T 32 36" fill="none" stroke="currentColor" stroke-width="1" opacity="0.6"/>',
+  // 07 Digital Embroidery
+  '<circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5"/><path d="M 14 18 L 18 22 M 18 22 L 22 18 M 22 18 L 26 22 M 14 24 L 18 28 M 22 24 L 26 28" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="4" y1="20" x2="6" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="34" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="1.4"/>',
+  // 08 3D Printer
+  '<rect x="4" y="4" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="4" y1="12" x2="36" y2="12" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/><rect x="18" y="6" width="4" height="6" fill="currentColor"/><path d="M 14 32 L 26 32 L 22 22 L 18 22 Z" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="18" y1="22" x2="18" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.6"/><line x1="22" y1="22" x2="22" y2="32" stroke="currentColor" stroke-width="0.8" opacity="0.6"/>',
+  // 09 Industrial Sewing
+  '<path d="M 4 26 L 4 12 Q 4 8 8 8 L 22 8 Q 26 8 26 12 L 26 18 L 34 18 Q 36 18 36 20 L 36 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="4" y="26" width="32" height="4" fill="currentColor" opacity="0.5"/><circle cx="12" cy="14" r="2" fill="currentColor"/><line x1="24" y1="18" x2="24" y2="30" stroke="currentColor" stroke-width="1.6"/><line x1="24" y1="32" x2="24" y2="36" stroke="currentColor" stroke-width="0.8" stroke-dasharray="1 1"/>',
+  // 10 Sergers
+  '<path d="M 4 26 L 4 10 Q 4 6 8 6 L 22 6 Q 26 6 26 10 L 26 16 L 34 16 Q 36 16 36 18 L 36 26 Z" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="4" y="26" width="32" height="4" fill="currentColor" opacity="0.5"/><line x1="18" y1="16" x2="18" y2="30" stroke="currentColor" stroke-width="1"/><line x1="21" y1="16" x2="21" y2="30" stroke="currentColor" stroke-width="1"/><line x1="24" y1="16" x2="24" y2="30" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="12" r="1.5" fill="currentColor"/><circle cx="14" cy="12" r="1.5" fill="currentColor"/><path d="M 4 34 L 36 34" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 1"/>',
+  // 11 Pattern Cutting Tables
+  '<rect x="4" y="10" width="32" height="20" fill="none" stroke="currentColor" stroke-width="1.4"/><g stroke="currentColor" stroke-width="0.4" opacity="0.4"><line x1="4" y1="16" x2="36" y2="16"/><line x1="4" y1="22" x2="36" y2="22"/><line x1="12" y1="10" x2="12" y2="30"/><line x1="20" y1="10" x2="20" y2="30"/><line x1="28" y1="10" x2="28" y2="30"/></g><path d="M 8 14 L 16 12 L 22 15 L 24 22 L 18 26 L 10 24 Z" fill="none" stroke="currentColor" stroke-width="1.2"/><line x1="4" y1="34" x2="36" y2="34" stroke="currentColor" stroke-width="1.4"/>',
+  // 12 Dress Forms
+  '<path d="M 16 6 L 16 10 Q 16 12 18 12 L 22 12 Q 24 12 24 10 L 24 6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M 15 12 Q 10 18 12 26 Q 13 30 15 32 L 25 32 Q 27 30 28 26 Q 30 18 25 12 Z" fill="none" stroke="currentColor" stroke-width="1.4"/><line x1="12" y1="20" x2="28" y2="20" stroke="currentColor" stroke-width="0.6" opacity="0.5" stroke-dasharray="1 1"/><rect x="18" y="32" width="4" height="4" fill="currentColor"/><rect x="14" y="36" width="12" height="2" fill="currentColor"/>'
+];
+
+document.querySelectorAll('.equipment-item').forEach(item => {
+  const idx = parseInt(item.getAttribute('data-eq'), 10);
+  const iconSvg = equipmentIcons[idx];
+  if (!iconSvg) return;
+  const wrap = document.createElement('span');
+  wrap.className = 'equipment-icon';
+  wrap.innerHTML = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">${iconSvg}</svg>`;
+  item.appendChild(wrap);
+});
+
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ EQUIPMENT MODAL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
+// Custom SVG illustrations ‚Äî always render, always on-brand
 const eqSvg = (content) => `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" preserveAspectRatio="xMidYMid slice">${content}</svg>`)}`;
 
 const svgBase = (icon) => `
@@ -4190,11 +5142,11 @@ const svgBase = (icon) => `
   </defs>
   <rect width="600" height="500" fill="#003F87"/>
   <rect width="600" height="500" fill="url(#grid)"/>
-  <text x="40" y="60" fill="#C8102E" font-family="monospace" font-size="11" letter-spacing="3">PROJECT 808 ✦ EQUIPMENT</text>
+  <text x="40" y="60" fill="#C8102E" font-family="monospace" font-size="11" letter-spacing="3">PROJECT 808 ‚ú¶ EQUIPMENT</text>
   <line x1="40" y1="80" x2="160" y2="80" stroke="#C8102E" stroke-width="1"/>
   ${icon}
-  <text x="40" y="465" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9" letter-spacing="2">CHICAGO, IL · 2026</text>
-  <text x="560" y="465" fill="#C8102E" font-family="serif" font-size="14" text-anchor="end">✦</text>
+  <text x="40" y="465" fill="rgba(255,255,255,0.4)" font-family="monospace" font-size="9" letter-spacing="2">CHICAGO, IL ¬∑ 2026</text>
+  <text x="560" y="465" fill="#C8102E" font-family="serif" font-size="14" text-anchor="end">‚ú¶</text>
 `;
 
 const equipmentData = [
@@ -4238,7 +5190,7 @@ const equipmentData = [
         <text x="0" y="140" fill="white" font-family="serif" font-style="italic" font-size="32" text-anchor="middle">Laser Cutters</text>
       </g>
     `)),
-    desc: 'Computer-controlled laser cutting machines that precisely cut and engrave wood, acrylic, leather, fabric, and paper — turning vector designs into physical objects in minutes.',
+    desc: 'Computer-controlled laser cutting machines that precisely cut and engrave wood, acrylic, leather, fabric, and paper ‚Äî turning vector designs into physical objects in minutes.',
     uses: [
       { title: 'Custom product runs', body: 'Cut acrylic jewelry, wooden home goods, leather accessories, or branded merch for your line at production scale.' },
       { title: 'Architectural models', body: 'Build precise scale models of buildings, sets, or installations from layered wood, cardboard, or acrylic.' },
@@ -4287,7 +5239,7 @@ const equipmentData = [
         <text x="0" y="140" fill="white" font-family="serif" font-style="italic" font-size="32" text-anchor="middle">Water Jets</text>
       </g>
     `)),
-    desc: 'High-pressure water-and-abrasive cutting machines that slice through metal, stone, glass, and thick composites with no heat distortion — perfect for materials laser cutters can\'t touch.',
+    desc: 'High-pressure water-and-abrasive cutting machines that slice through metal, stone, glass, and thick composites with no heat distortion ‚Äî perfect for materials laser cutters can\'t touch.',
     uses: [
       { title: 'Metal art and decor', body: 'Cut steel, brass, copper, and aluminum into intricate wall art, sculptural pieces, and architectural inserts.' },
       { title: 'Custom hardware and parts', body: 'Produce one-off metal parts, brackets, and components for furniture, fashion hardware, or product builds.' },
@@ -4387,7 +5339,7 @@ const equipmentData = [
         <text x="0" y="150" fill="white" font-family="serif" font-style="italic" font-size="32" text-anchor="middle">3D Printers</text>
       </g>
     `)),
-    desc: 'FDM and resin 3D printers for rapid prototyping, small-batch product runs, and one-off custom parts — turning digital models into physical objects in hours.',
+    desc: 'FDM and resin 3D printers for rapid prototyping, small-batch product runs, and one-off custom parts ‚Äî turning digital models into physical objects in hours.',
     uses: [
       { title: 'Product prototyping', body: 'Iterate on consumer product designs, jewelry, and hardware concepts before sourcing factory production.' },
       { title: 'Custom jewelry and wearables', body: 'Print fine-detail resin jewelry masters, ring sizers, and unique fashion-tech wearables.' },
@@ -4411,7 +5363,7 @@ const equipmentData = [
         <text x="0" y="140" fill="white" font-family="serif" font-style="italic" font-size="28" text-anchor="middle">Industrial Sewing</text>
       </g>
     `)),
-    desc: 'Heavy-duty single-needle and walking-foot industrial sewing machines built to handle denim, leather, canvas, and upholstery weight at production speed — the backbone of any serious fashion or soft-goods business.',
+    desc: 'Heavy-duty single-needle and walking-foot industrial sewing machines built to handle denim, leather, canvas, and upholstery weight at production speed ‚Äî the backbone of any serious fashion or soft-goods business.',
     uses: [
       { title: 'Apparel collections', body: 'Sew sample garments, small production runs, and capsule collections for your fashion line at the same machine quality used by factories.' },
       { title: 'Bag and accessories lines', body: 'Construct leather totes, canvas backpacks, weekenders, and structured accessories for direct-to-consumer brands.' },
@@ -4436,7 +5388,7 @@ const equipmentData = [
         <text x="0" y="150" fill="white" font-family="serif" font-style="italic" font-size="28" text-anchor="middle">Sergers</text>
       </g>
     `)),
-    desc: 'Industrial overlock sergers and coverstitch machines that produce the clean, professional seam finishes you see on retail apparel — essential for knits, activewear, and stretch fabrics.',
+    desc: 'Industrial overlock sergers and coverstitch machines that produce the clean, professional seam finishes you see on retail apparel ‚Äî essential for knits, activewear, and stretch fabrics.',
     uses: [
       { title: 'Knit and stretch apparel', body: 'Construct T-shirts, leggings, hoodies, and athletic wear with the same finish quality as major activewear brands.' },
       { title: 'Hemmed and finished edges', body: 'Coverstitch hems on tees and sweatshirts, hem cuffs, and add the double-needle topstitch found on retail garments.' },
@@ -4471,7 +5423,7 @@ const equipmentData = [
         <text x="0" y="160" fill="white" font-family="serif" font-style="italic" font-size="28" text-anchor="middle">Pattern Tables</text>
       </g>
     `)),
-    desc: 'Large-format cutting tables paired with industry-standard rulers, rotary cutters, and pattern paper — the dedicated workspace pattern makers and designers need to draft, grade, and cut at scale.',
+    desc: 'Large-format cutting tables paired with industry-standard rulers, rotary cutters, and pattern paper ‚Äî the dedicated workspace pattern makers and designers need to draft, grade, and cut at scale.',
     uses: [
       { title: 'Pattern drafting from scratch', body: 'Develop original block patterns, grade across sizes, and prepare production-ready patterns for your fashion line.' },
       { title: 'Marker making and cut spreading', body: 'Lay out efficient cutting markers, spread fabric in multiple layers, and cut full-size production batches.' },
@@ -4493,12 +5445,12 @@ const equipmentData = [
         <text x="0" y="160" fill="white" font-family="serif" font-style="italic" font-size="28" text-anchor="middle">Dress Forms</text>
       </g>
     `)),
-    desc: 'Professional dress forms across straight and plus sizes, plus full-length fitting mirrors and a dedicated draping station — the tools needed to design with the body in mind, not just on a flat sketch.',
+    desc: 'Professional dress forms across straight and plus sizes, plus full-length fitting mirrors and a dedicated draping station ‚Äî the tools needed to design with the body in mind, not just on a flat sketch.',
     uses: [
-      { title: 'Draping and design development', body: 'Develop garments by draping fabric directly on the form — the technique used by couture houses and high-end brands.' },
+      { title: 'Draping and design development', body: 'Develop garments by draping fabric directly on the form ‚Äî the technique used by couture houses and high-end brands.' },
       { title: 'Fit testing and grading', body: 'Test how patterns translate to real bodies across sizes, and refine fit before committing to production.' },
       { title: 'Photoshoots and lookbooks', body: 'Style and photograph garments on forms for product pages, lookbooks, and wholesale linesheets.' },
-      { title: 'Inclusive size design', body: 'Work across the full size range with proper forms — building lines that fit real bodies from the start, not as an afterthought.' }
+      { title: 'Inclusive size design', body: 'Work across the full size range with proper forms ‚Äî building lines that fit real bodies from the start, not as an afterthought.' }
     ]
   }
 ];
@@ -4564,7 +5516,7 @@ document.addEventListener('keydown', (e) => {
     closeEqModal();
   }
 });
-// ───── SURVEY MODAL ─────
+// ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ SURVEY MODAL ‚îÄ‚îÄ‚îÄ‚îÄ‚îÄ
 document.addEventListener('DOMContentLoaded', function() {
 const surveyModal = document.getElementById('surveyModal');
 const surveyForm = document.getElementById('surveyForm');
@@ -4886,7 +5838,7 @@ Q15. Message to Decision-Makers: ${responses.message_to_decision_makers || 'Not 
 
 We'll keep you updated on Project 808's progress. If you have questions, reply to this email or contact chicagoproject808@gmail.com.
 
-✦ Project 808
+‚ú¶ Project 808
 Chicago Creative Infrastructure Initiative`;
 
     // Send email via Formspree
@@ -4900,7 +5852,7 @@ Chicago Creative Infrastructure Initiative`;
           email: userEmail,
           name: responses.name,
           message: emailBody,
-          _subject: '✦ Your Project 808 Survey Response'
+          _subject: '‚ú¶ Your Project 808 Survey Response'
         })
       });
       
@@ -4914,7 +5866,7 @@ Chicago Creative Infrastructure Initiative`;
           email: 'chicagoproject808@gmail.com',
           name: `New Response from ${responses.name}`,
           message: `New survey submission from ${responses.name} (${userEmail})\n\n${emailBody}`,
-          _subject: `✦ New Survey Response from ${responses.name}`
+          _subject: `‚ú¶ New Survey Response from ${responses.name}`
         })
       });
     } catch (emailErr) {
@@ -4973,21 +5925,21 @@ Chicago Creative Infrastructure Initiative`;
 
 <!-- SURVEY MODAL (hidden, opens on CTA click) -->
 <div class="survey-modal" id="surveyModal">
-  <button class="survey-modal-close" id="surveyModalClose">✕</button>
+  <button class="survey-modal-close" id="surveyModalClose">‚úï</button>
   
   <div class="s-hero">
     <div class="s-stars-row">
-      <span class="s-star">✦</span>
-      <span class="s-star">✦</span>
-      <span class="s-star">✦</span>
-      <span class="s-star">✦</span>
+      <span class="s-star">‚ú¶</span>
+      <span class="s-star">‚ú¶</span>
+      <span class="s-star">‚ú¶</span>
+      <span class="s-star">‚ú¶</span>
     </div>
-    <p class="s-tag">Chicago Creative Infrastructure — 2026</p>
+    <p class="s-tag">Chicago Creative Infrastructure ‚Äî 2026</p>
     <h1>We need to know<br>you <em>exist.</em></h1>
-    <p>Two minutes of your time becomes the data a city needs to invest in its own people. Fill this out honestly — your experience is the proof of concept.</p>
+    <p>Two minutes of your time becomes the data a city needs to invest in its own people. Fill this out honestly ‚Äî your experience is the proof of concept.</p>
     <div class="s-hero-rule">
       <span></span>
-      <p>808 · Chicago</p>
+      <p>808 ¬∑ Chicago</p>
       <span></span>
     </div>
   </div>
@@ -4997,7 +5949,7 @@ Chicago Creative Infrastructure Initiative`;
   <div class="s-form-wrap">
     <form id="surveyForm" novalidate>
 
-      <div class="s-section-label"><span class="s">✦</span> 01 — Who You Are</div>
+      <div class="s-section-label"><span class="s">‚ú¶</span> 01 ‚Äî Who You Are</div>
 
       <div class="q-block">
         <div class="q-number">Q01</div>
@@ -5017,7 +5969,7 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-label">Which best describes where you are right now?</div>
         <div class="options grid">
           <label class="option"><input type="radio" name="status"><span>Current college student in Chicago</span></label>
-          <label class="option"><input type="radio" name="status"><span>Recent grad (0–2 years out)</span></label>
+          <label class="option"><input type="radio" name="status"><span>Recent grad (0‚Äì2 years out)</span></label>
           <label class="option"><input type="radio" name="status"><span>Independent creative / freelancer</span></label>
           <label class="option"><input type="radio" name="status"><span>Founder / building a brand</span></label>
           <label class="option"><input type="radio" name="status"><span>Educator / faculty</span></label>
@@ -5056,10 +6008,10 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-number">Q05</div>
         <div class="q-label">Have you lost access to fabrication or production equipment after leaving a school or institution?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="lostaccess"><span>Yes — and it significantly impacted my ability to create or build</span></label>
-          <label class="option"><input type="radio" name="lostaccess"><span>Yes — but I found workarounds</span></label>
-          <label class="option"><input type="radio" name="lostaccess"><span>Not yet — but I'm anticipating this</span></label>
-          <label class="option"><input type="radio" name="lostaccess"><span>No — I still have access</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>Yes ‚Äî and it significantly impacted my ability to create or build</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>Yes ‚Äî but I found workarounds</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>Not yet ‚Äî but I'm anticipating this</span></label>
+          <label class="option"><input type="radio" name="lostaccess"><span>No ‚Äî I still have access</span></label>
         </div>
       </div>
 
@@ -5090,23 +6042,23 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-number">Q07</div>
         <div class="q-label">Have tariffs or overseas manufacturing costs blocked you from producing or testing a product idea?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="tariffs"><span>Yes — I had to abandon or delay the idea entirely</span></label>
-          <label class="option"><input type="radio" name="tariffs"><span>Yes — I found a more expensive local option</span></label>
-          <label class="option"><input type="radio" name="tariffs"><span>Not yet — but I'm concerned about this</span></label>
-          <label class="option"><input type="radio" name="tariffs"><span>No — this hasn't affected me</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>Yes ‚Äî I had to abandon or delay the idea entirely</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>Yes ‚Äî I found a more expensive local option</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>Not yet ‚Äî but I'm concerned about this</span></label>
+          <label class="option"><input type="radio" name="tariffs"><span>No ‚Äî this hasn't affected me</span></label>
         </div>
       </div>
 
       <div class="q-block">
         <div class="q-number">Q08</div>
-        <div class="q-label">Briefly describe what you were trying to build — and what stopped you.</div>
+        <div class="q-label">Briefly describe what you were trying to build ‚Äî and what stopped you.</div>
         <div class="q-sub">This is the most important question on this form. Be specific. Your story is the proof.</div>
         <textarea placeholder="e.g. I wanted to prototype a run of custom pieces but the minimum overseas order was $2,000 and nothing in Chicago could produce at that scale..."></textarea>
       </div>
 
       <hr class="s-section-divider">
 
-      <div class="s-section-label"><span class="s">✦</span> 02 — Demand & Willingness to Invest</div>
+      <div class="s-section-label"><span class="s">‚ú¶</span> 02 ‚Äî Demand & Willingness to Invest</div>
 
       <div class="q-block">
         <div class="q-number">Q09</div>
@@ -5123,10 +6075,10 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-number">Q10</div>
         <div class="q-label">What would you reasonably pay per month for access to this space and its equipment?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="budget"><span>$25–$50 / month</span></label>
-          <label class="option"><input type="radio" name="budget"><span>$50–$100 / month</span></label>
-          <label class="option"><input type="radio" name="budget"><span>$100–$200 / month</span></label>
-          <label class="option"><input type="radio" name="budget"><span>$200–$350 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$25‚Äì$50 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$50‚Äì$100 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$100‚Äì$200 / month</span></label>
+          <label class="option"><input type="radio" name="budget"><span>$200‚Äì$350 / month</span></label>
           <label class="option"><input type="radio" name="budget"><span>$350+ / month for unlimited access</span></label>
         </div>
       </div>
@@ -5135,16 +6087,16 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-number">Q11</div>
         <div class="q-label">Would you pay a one-time fee to bring an idea and leave with a working prototype the same day?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="sameday"><span>Yes — absolutely</span></label>
-          <label class="option"><input type="radio" name="sameday"><span>Yes — depending on the price</span></label>
-          <label class="option"><input type="radio" name="sameday"><span>Maybe — I'd need more details</span></label>
-          <label class="option"><input type="radio" name="sameday"><span>No — I just need machine access</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>Yes ‚Äî absolutely</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>Yes ‚Äî depending on the price</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>Maybe ‚Äî I'd need more details</span></label>
+          <label class="option"><input type="radio" name="sameday"><span>No ‚Äî I just need machine access</span></label>
         </div>
       </div>
 
       <div class="q-block">
         <div class="q-number">Q12</div>
-        <div class="q-label">On a scale of 1–10, how urgent is this need for you personally right now?</div>
+        <div class="q-label">On a scale of 1‚Äì10, how urgent is this need for you personally right now?</div>
         <div class="scale-wrap" id="surveyUrgencyScale"></div>
         <div class="scale-labels">
           <span class="scale-label-text">Not urgent</span>
@@ -5154,16 +6106,16 @@ Chicago Creative Infrastructure Initiative`;
 
       <hr class="s-section-divider">
 
-      <div class="s-section-label"><span class="s">✦</span> 03 — Chicago's Responsibility</div>
+      <div class="s-section-label"><span class="s">‚ú¶</span> 03 ‚Äî Chicago's Responsibility</div>
 
       <div class="q-block">
         <div class="q-number">Q13</div>
         <div class="q-label">Do you believe the City of Chicago has a responsibility to fund creative manufacturing infrastructure for its residents?</div>
         <div class="options">
-          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes — this is a workforce and economic development issue</span></label>
-          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes — but it should be community-led, not city-controlled</span></label>
-          <label class="option"><input type="radio" name="cityresponsibility"><span>Partially — public-private partnership makes more sense</span></label>
-          <label class="option"><input type="radio" name="cityresponsibility"><span>No — this should be privately funded</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes ‚Äî this is a workforce and economic development issue</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Yes ‚Äî but it should be community-led, not city-controlled</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>Partially ‚Äî public-private partnership makes more sense</span></label>
+          <label class="option"><input type="radio" name="cityresponsibility"><span>No ‚Äî this should be privately funded</span></label>
         </div>
       </div>
 
@@ -5182,7 +6134,7 @@ Chicago Creative Infrastructure Initiative`;
         <div class="q-number">Q15</div>
         <div class="q-label">Is there anything else you want decision-makers to know about why this space needs to exist?</div>
         <div class="q-sub">Your words may be quoted directly in our pitch to the city. Be honest. Be bold.</div>
-        <textarea placeholder="Write freely — this is your chance to speak directly to the people holding the budget."></textarea>
+        <textarea placeholder="Write freely ‚Äî this is your chance to speak directly to the people holding the budget."></textarea>
       </div>
 
       <hr class="s-section-divider">
@@ -5193,7 +6145,7 @@ Chicago Creative Infrastructure Initiative`;
       </div>
 
       <div class="s-success-msg" id="surveySuccess">
-        <div class="s-success-stars">✦ ✦ ✦ ✦</div>
+        <div class="s-success-stars">‚ú¶ ‚ú¶ ‚ú¶ ‚ú¶</div>
         <h2>Your answers have been recorded.</h2>
         <p>A copy has been sent to <strong id="confirmationEmail"></strong><br>We'll keep you updated as 808 moves forward.</p>
         
